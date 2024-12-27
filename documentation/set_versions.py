@@ -85,6 +85,17 @@ bitbake_mapping = {
     "dunfell" : "1.46",
 }
 
+# Special argument "bitbake-active-releases" prints the active bitbake releases
+# we define here, and exits. This is used in the autobuilder to pass this information to
+# bitbake's set_versions.py, which in turn sets bitbake's switchers.js
+# appropriately.
+if len(sys.argv) > 1:
+    if sys.argv[1] == "bitbake-active-releases":
+        for release in activereleases:
+            if release in bitbake_mapping:
+                print("%s,%s" % (bitbake_mapping[release], release))
+        exit(0)
+
 # 3.4 onwards doesn't have poky version
 # Early 3.4 release docs do reference it though
 poky_mapping = {
