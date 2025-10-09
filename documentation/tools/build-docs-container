@@ -76,6 +76,7 @@ main ()
   fi
 
   local image="$1"
+  local orig_image=$image
   shift
 
   OCI=$(which "$CONTAINERCMD")
@@ -181,6 +182,7 @@ main ()
     --volume="$DOCS_DIR:/docs:rw"
     --workdir=/docs
     --security-opt label=disable
+    --env BUILDDIR="_build/$orig_image-$image_sha"
   )
 
   if [ "$(basename "$OCI")" = "docker" ]; then
