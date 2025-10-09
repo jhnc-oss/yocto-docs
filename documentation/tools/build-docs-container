@@ -80,10 +80,6 @@ main ()
 
   OCI=$(which "$CONTAINERCMD")
 
-  # docker build doesn't accept 2 colons, so "sanitize" the name
-  local sanitized_dockername
-  sanitized_dockername=$(echo "$image" | tr ':.' '-')
-
   local version
   version=$(echo "$image" | awk -F: '{print $NF}')
 
@@ -159,8 +155,13 @@ main ()
       ;;
   esac
 
+  local image_sha
+  image_id_file=$(mktemp)
+  # Don't clutter tmpfs on fails
+  trap 'rm -f "$image_id_file"' EXIT
+
   $OCI build \
-    --tag "yocto-docs-$sanitized_dockername:latest" \
+    --iidfile "$image_id_file" \
     --build-arg ARG_FROM="$repo/$image" \
     --build-arg INCLUDE_ESSENTIAL_PACKAGES="${INCLUDE_ESSENTIAL_PACKAGES}" \
     --build-arg ESSENTIAL="host_packages_scripts/$essential" \
@@ -169,6 +170,9 @@ main ()
     --build-arg PIP3="host_packages_scripts/${pip3:-}" \
     --file "$SCRIPT_DIR/containerfiles/$containerfile" \
     "$SCRIPT_DIR"
+
+  image_sha="$(< "$image_id_file")"
+  rm "$image_id_file"
 
   local -a args_run=(
     --rm
@@ -193,7 +197,7 @@ main ()
 
   $OCI run \
     "${args_run[@]}" \
-    "yocto-docs-$sanitized_dockername" \
+    "$image_sha" \
     "$@"
 }
 
