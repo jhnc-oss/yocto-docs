@@ -10791,7 +10791,7 @@ system and gives an overview of their function and contents.
 
    :term:`UNPACKDIR`
       This variable, used by the :ref:`ref-classes-base` class,
-      specifies where fetches sources should be unpacked by the
+      specifies where fetched sources should be unpacked by the
       :ref:`ref-tasks-unpack` task.
 
    :term:`UPDATERCPN`
