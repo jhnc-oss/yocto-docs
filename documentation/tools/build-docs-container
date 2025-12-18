@@ -185,6 +185,10 @@ main ()
     --env BUILDDIR="_build/$orig_image-$image_sha"
   )
 
+  # Create a symlink pointing to the latest build output
+  mkdir -p "$DOCS_DIR"/documentation/_build
+  ln -sf "$orig_image-$image_sha" "$DOCS_DIR"/documentation/_build/latest
+
   if [ "$(basename "$OCI")" = "docker" ]; then
     args_run+=(
       --user="$(id -u)":"$(id -g)"
