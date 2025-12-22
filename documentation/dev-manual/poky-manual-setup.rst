@@ -13,8 +13,15 @@ document guides through this setup step-by-step.
    :doc:`/brief-yoctoprojectqs/index`, which shows how to setup :term:`Poky`
    with ``bitbake-setup``.
 
+Obtaining The Source Repositories
+=================================
+
+You can obtain the source repositories required to build the Poky reference
+distro in two ways described below: cloning the repositories with Git, or
+downloading the released archives.
+
 Use Git to Clone The Layers
-===========================
+---------------------------
 
 Go to the :yocto_home:`Releases </development/releases/>` page, and choose a release
 (such as ``&DISTRO_REL_LATEST_TAG;``), corresponding to either the latest stable
@@ -40,6 +47,25 @@ following commands:
    $ git clone -b &DISTRO_REL_LATEST_TAG; https://git.openembedded.org/bitbake ./layers/bitbake
    $ git clone -b &DISTRO_REL_LATEST_TAG; https://git.openembedded.org/openembedded-core ./layers/openembedded-core
    $ git clone -b &DISTRO_REL_LATEST_TAG; https://git.yoctoproject.org/meta-yocto ./layers/meta-yocto
+
+
+Using the Source Archives
+-------------------------
+
+The Yocto Project also provides source archives of its releases, which
+are available on :yocto_dl:`/releases/yocto/`. Then, choose the subdirectory
+containing the release you wish to use, for example
+:yocto_dl:`&DISTRO_REL_LATEST_TAG; </releases/yocto/&DISTRO_REL_LATEST_TAG;/>`.
+
+You will find there source archives of individual components (if you wish
+to use them individually), and of the corresponding Poky release bundling
+a selection of these components.
+
+.. note::
+
+   The recommended method for accessing Yocto Project components is to
+   use Git to clone the upstream repository and work from within that
+   locally cloned repository.
 
 Building Your Image
 ===================
