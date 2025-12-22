@@ -25,10 +25,8 @@ Establishing Toaster System Dependencies
 
 Toaster requires extra Python dependencies in order to run. A Toaster
 requirements file named ``toaster-requirements.txt`` defines the Python
-dependencies. The requirements file is located in the ``bitbake``
-directory, which is located in the root directory of the
-:term:`Source Directory` (e.g.
-``poky/bitbake/toaster-requirements.txt``). The dependencies appear in a
+dependencies. The requirements file is located in the :term:`BitBake`
+repository, (``bitbake/toaster-requirements.txt``). The dependencies appear in a
 ``pip``, install-compatible format.
 
 Install Toaster Packages

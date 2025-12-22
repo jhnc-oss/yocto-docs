@@ -161,16 +161,15 @@ As shipped, Toaster is configured to work with the following releases:
 -  *Yocto Project &DISTRO; "&DISTRO_NAME;" or OpenEmbedded "&DISTRO_NAME;":*
    This release causes your Toaster projects to build against the head
    of the &DISTRO_NAME_NO_CAP; branch at
-   :yocto_git:`/poky/log/?h=&DISTRO_NAME_NO_CAP;` or
    :oe_git:`/openembedded-core/commit/?h=&DISTRO_NAME_NO_CAP;`.
 
 -  *Yocto Project "Master" or OpenEmbedded "Master":* This release
    causes your Toaster Projects to build against the head of the master
    branch, which is where active development takes place, at
-   :yocto_git:`/poky/log/` or :oe_git:`/openembedded-core/log/`.
+   :oe_git:`/openembedded-core/log/`.
 
 -  *Local Yocto Project or Local OpenEmbedded:* This release causes your
-   Toaster Projects to build against the head of the ``poky`` or
+   Toaster Projects to build against the head of the
    ``openembedded-core`` clone you have local to the machine running
    Toaster.
 
@@ -277,7 +276,7 @@ release selection:
    <!-- Bitbake versions which correspond to the metadata release -->
    <object model="orm.bitbakeversion" pk="1">
       <field type="CharField" name="name">&DISTRO_NAME_NO_CAP;</field>
-      <field type="CharField" name="giturl">git://git.yoctoproject.org/poky</field>
+      <field type="CharField" name="giturl">git://git.openembedded.org/bitbake</field>
       <field type="CharField" name="branch">&DISTRO_NAME_NO_CAP;</field>
       <field type="CharField" name="dirpath">bitbake</field>
    </object>
@@ -513,8 +512,7 @@ at the
 `Django <https://docs.djangoproject.com/en/2.2/topics/settings/>`__
 site. However, several ``manage.py`` commands have been created that are
 specific to Toaster and are used to control configuration and back-end
-tasks. You can locate these commands in the
-:term:`Source Directory` (e.g. ``poky``) at
+tasks. You can locate these commands in :term:`BitBake` at
 ``bitbake/lib/manage.py``. This section documents those commands.
 
 .. note::
@@ -551,7 +549,7 @@ example that assumes default repository and :term:`Build Directory` names:
 
 .. code-block:: shell
 
-   $ cd poky/build
+   $ cd project/build
    $ python ../bitbake/lib/toaster/manage.py buildslist
 
 If your Toaster database had only one build, the above

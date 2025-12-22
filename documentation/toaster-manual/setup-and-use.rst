@@ -15,15 +15,15 @@ Toaster`" chapter, you are ready to start
 Toaster.
 
 Navigate to the root of your
-:term:`Source Directory` (e.g. ``poky``)::
+:term:`Source Directory` (e.g. ``project``)::
 
-   $ cd poky
+   $ cd project
 
 Once in that directory, source the build environment script::
 
-   $ source oe-init-build-env
+   $ source layers/openembedded-core/oe-init-build-env
 
-Next, from the :term:`Build Directory` (e.g. ``poky/build``), start Toaster
+Next, from the :term:`Build Directory` (e.g. ``project/build``), start Toaster
 using this command::
 
    $ source toaster start
@@ -112,8 +112,8 @@ This example binds to a specific IP address on the host's NIC::
 The Directory for Cloning Layers
 ================================
 
-Toaster creates a ``_toaster_clones`` directory inside your Source
-Directory (i.e. ``poky``) to clone any layers needed for your builds.
+Toaster creates a ``_toaster_clones`` directory inside your :term:`Source
+Directory` to clone any layers needed for your builds.
 
 Alternatively, if you would like all of your Toaster related files and
 directories to be in a particular location other than the default, you
@@ -124,8 +124,8 @@ causes Toaster to create and use ``$TOASTER_DIR./_toaster_clones``.
 The Build Directory
 ===================
 
-Toaster creates a :term:`Build Directory` within your Source Directory (e.g.
-``poky``) to execute the builds.
+Toaster creates a :term:`Build Directory` within your :term:`Source Directory`
+to execute the builds.
 
 Alternatively, if you would like all of your Toaster related files and
 directories to be in a particular location, you can set the
@@ -155,8 +155,8 @@ superuser by following these steps:
    is the :term:`Build Directory`, invoke the ``createsuperuser`` command from
    ``manage.py``::
 
-      $ cd poky/build
-      $ ../bitbake/lib/toaster/manage.py createsuperuser
+      $ cd project/build
+      $ ../layers/bitbake/lib/toaster/manage.py createsuperuser
 
 #. Django prompts you for the username, which you need to provide.
 
@@ -233,17 +233,21 @@ Perform the following steps to install Toaster:
       $ sudo /usr/sbin/useradd toaster -md /var/www/toaster -s /bin/false
       $ sudo su - toaster -s /bin/bash
 
-#.  Checkout a copy of ``poky`` into the web server directory. You will
+#.  Checkout a copy of :term:`BitBake` into the web server directory. You will
     be using ``/var/www/toaster``::
 
-      $ git clone git://git.yoctoproject.org/poky
-      $ git checkout &DISTRO_NAME_NO_CAP;
+      $ git clone git://git.openembedded.org/bitbake
+
+#.  Checkout a version of :term:`BitBake` matching the current Yocto Project
+    &DISTRO_NAME; release::
+
+      $ git checkout &BITBAKE_SERIES;
 
 #.  Install Toaster dependencies using the ``--user`` flag which keeps the
     Python packages isolated from your system-provided packages::
 
       $ cd /var/www/toaster/
-      $ pip3 install --user -r ./poky/bitbake/toaster-requirements.txt
+      $ pip3 install --user -r ./bitbake/toaster-requirements.txt
       $ pip3 install --user mysqlclient
 
     .. note::
@@ -253,7 +257,7 @@ Perform the following steps to install Toaster:
        manager to install the packages.
 
 #.  Configure Toaster by editing
-    ``/var/www/toaster/poky/bitbake/lib/toaster/toastermain/settings.py``
+    ``/var/www/toaster/bitbake/lib/toaster/toastermain/settings.py``
     as follows:
 
     -  Edit the
@@ -298,9 +302,9 @@ Perform the following steps to install Toaster:
 #.  Get Toaster to create the database schema, default data, and gather
     the statically-served files::
 
-      $ cd /var/www/toaster/poky/
+      $ cd /var/www/toaster/
       $ ./bitbake/lib/toaster/manage.py migrate
-      $ TOASTER_DIR=`pwd\` TEMPLATECONF='poky' \
+      $ TOASTER_DIR=`pwd` TEMPLATECONF='poky' \
          ./bitbake/lib/toaster/manage.py checksettings
       $ ./bitbake/lib/toaster/manage.py collectstatic
 
@@ -322,12 +326,12 @@ Perform the following steps to install Toaster:
     directory is created on the file system. In the example above,
     ``TOASTER_DIR`` is set as follows::
 
-       /var/www/toaster/poky
+       /var/www/toaster/
 
 
     This setting causes the Toaster :term:`Build Directory` to be::
 
-       /var/www/toaster/poky/build
+       /var/www/toaster/build
 
     Finally, the ``collectstatic`` command is a Django framework command
     that collects all the statically served files into a designated
@@ -380,14 +384,14 @@ Perform the following steps to install Toaster:
          </IfModule>
       </Directory>
 
-      <Directory /var/www/toaster/poky/bitbake/lib/toaster/toastermain>
+      <Directory /var/www/toaster/bitbake/lib/toaster/toastermain>
          <Files "wsgi.py">
             Require all granted
          </Files>
       </Directory>
 
-      WSGIDaemonProcess toaster_wsgi python-path=/var/www/toaster/poky/bitbake/lib/toaster:/var/www/toaster/.local/lib/python3.4/site-packages
-      WSGIScriptAlias / "/var/www/toaster/poky/bitbake/lib/toaster/toastermain/wsgi.py"
+      WSGIDaemonProcess toaster_wsgi python-path=/var/www/toaster/bitbake/lib/toaster:/var/www/toaster/.local/lib/python3.4/site-packages
+      WSGIScriptAlias / "/var/www/toaster/bitbake/lib/toaster/toastermain/wsgi.py"
       <Location />
          WSGIProcessGroup toaster_wsgi
       </Location>
@@ -419,16 +423,16 @@ Perform the following steps to install Toaster:
 
       [Service]
       Type=forking User=toaster
-      ExecStart=/usr/bin/screen -d -m -S runbuilds /var/www/toaster/poky/bitbake/lib/toaster/runbuilds-service.sh start
+      ExecStart=/usr/bin/screen -d -m -S runbuilds /var/www/toaster/bitbake/lib/toaster/runbuilds-service.sh start
       ExecStop=/usr/bin/screen -S runbuilds -X quit
-      WorkingDirectory=/var/www/toaster/poky
+      WorkingDirectory=/var/www/toaster
 
       [Install]
       WantedBy=multi-user.target
 
 
     Prepare the ``runbuilds-service.sh`` script that you need to place in the
-    ``/var/www/toaster/poky/bitbake/lib/toaster/`` directory by setting
+    ``/var/www/toaster/bitbake/lib/toaster/`` directory by setting
     up executable permissions::
 
       #!/bin/bash
@@ -436,7 +440,7 @@ Perform the following steps to install Toaster:
       #export http_proxy=http://proxy.host.com:8080
       #export https_proxy=http://proxy.host.com:8080
       #export GIT_PROXY_COMMAND=$HOME/bin/gitproxy
-      cd poky/
+      cd /var/www/toaster/
       source ./oe-init-build-env build
       source ../bitbake/bin/toaster $1 noweb
       [ "$1" == 'start' ] && /bin/bash
