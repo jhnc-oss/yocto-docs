@@ -149,7 +149,7 @@ build the SDK installer. Follow these steps:
 #. *Run the Installer:* You can now run the SDK installer from
    ``tmp/deploy/sdk`` in the :term:`Build Directory`. Here is an example::
 
-      $ cd poky/build/tmp/deploy/sdk
+      $ cd project/build/tmp/deploy/sdk
       $ ./poky-glibc-x86_64-core-image-sato-core2-64-toolchain-ext-&DISTRO;.sh
 
    During execution of the script, you choose the root location for the
