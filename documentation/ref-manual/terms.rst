@@ -403,7 +403,7 @@ universal, the list includes them just in case:
    :term:`OpenEmbedded Build System`
       The build system specific to the Yocto
       Project. The OpenEmbedded build system is based on another project
-      known as "Poky", which uses :term:`BitBake` as the task
+      known as :term:`BitBake` which is the task
       executor. Throughout the Yocto Project documentation set, the
       OpenEmbedded build system is sometimes referred to simply as "the
       build system". If other build systems, such as a host or target build
