@@ -22,7 +22,15 @@ release or a Long Term Support release.
 
 Once you complete the setup instructions for your machine (see the
 :doc:`/ref-manual/system-requirements` section of the Yocto Project Reference
-Manual), you need to get a copy of the different :term:`layers <Layer>` needed
+Manual), create a :term:`Source Directory`: the base directory for your project.
+We will name it ``project`` in the following sections:
+
+.. code-block:: console
+
+   $ mkdir project
+   $ cd project
+
+You need to get a copy of the different :term:`layers <Layer>` needed
 to setup the :term:`Poky` reference distribution on your build host. Use the
 following commands:
 
