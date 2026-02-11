@@ -195,8 +195,28 @@ print("Latest release tag found is %s" % latestreltag)
 print("Release series calculated to be %s" % ourseries)
 print("Bitbake version calculated to be %s" % bitbakeversion)
 
+# The &DISTRO; replacement will be mostly right when just equaling ourversion.
+# When we're on a random commit, in that case the DISTRO value will
+# contain the hash. This would for example be "5.3-4d2acc043".
+# This will not happen when publishing the documentation from the
+# autobuilder as we don't build specific commits - this should only happen
+# for development.
+distro = ourversion
+# Few exceptions though:
+if is_branch_tip:
+    # we're on a branch tip, in that case the closest match is the latest tag
+    # from that branch. Some instructions rely on DISTRO to provide tag names,
+    # etc. so it makes sense provide the latest tag from that branch.
+    distro = latesttag
+elif distro in ["dev", "next"]:
+    # When building on master or master-next, make the distro the version of the
+    # devbranch.
+    distro = release_series[devbranch]
+
+print(f"DISTRO calculated to be {distro}")
+
 replacements = {
-    "DISTRO" : ourversion,
+    "DISTRO" : distro,
     "DISTRO_LATEST_TAG": latesttag,
     "DISTRO_RELEASE_SERIES": release_series[ourseries],
     "DISTRO_NAME_NO_CAP" : ourseries,
