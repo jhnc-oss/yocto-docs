@@ -3394,9 +3394,9 @@ The variables used by this class are:
    to the ``loadables`` property of the configuration node.
 
 See U-Boot's documentation for details about `verified boot
-<https://source.denx.de/u-boot/u-boot/-/blob/master/doc/uImage.FIT/verified-boot.txt>`__
+<https://docs.u-boot.org/en/latest/usage/fit/verified-boot.html>`__
 and the `signature process
-<https://source.denx.de/u-boot/u-boot/-/blob/master/doc/uImage.FIT/signature.txt>`__.
+<https://docs.u-boot.org/en/latest/usage/fit/signature.html>`__.
 
 See also the description of :ref:`ref-classes-kernel-fit-image` class, which this class
 imitates.
