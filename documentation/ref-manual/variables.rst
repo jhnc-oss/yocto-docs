@@ -1507,9 +1507,6 @@ system and gives an overview of their function and contents.
       splitting the output executable file. Set the variable to "0" to get
       a single output executable file.
 
-   :term:`BZRDIR`
-      See :term:`bitbake:BZRDIR` in the BitBake manual.
-
    :term:`CACHE`
       Specifies the directory BitBake uses to store a cache of the
       :term:`Metadata` so it does not need to be parsed every time
@@ -9372,7 +9369,7 @@ system and gives an overview of their function and contents.
 
    :term:`SRCREV`
       The revision of the source code used to build the package. This
-      variable applies to Subversion, Git, Mercurial, and Bazaar only. Note
+      variable applies to Subversion, Git, and Mercurial only. Note
       that if you want to build a fixed revision and you want to avoid
       performing a query on the remote repository every time BitBake parses
       your recipe, you should specify a :term:`SRCREV` that is a full revision
