@@ -1,4 +1,4 @@
-sudo dnf install -y wget
+sudo dnf install -y wget perl
 textooldir=${TEXTOOLDIR:-"./docs-build-tex-tools"}
 mkdir -p "$textooldir"/tl
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz -O "$textooldir"/install-tl-unx.tar.gz
