@@ -107,6 +107,21 @@ by https://git.yoctoproject.org/yocto-autobuilder-helper/tree/scripts/run-docs-b
     buf.push("</select>");
     return buf.join("");
   }
+
+  function get_docs_meta_info(current_version) {
+    if (current_version in switcher_versions) {
+      // Display the commit id of the documentation, as we're browsing a branch tip
+      var meta_info = ' (commit <a href="https://git.yoctoproject.org/yocto-docs/log?id=';
+      meta_info = meta_info + switcher_versions[current_version]['hash'];
+      meta_info = meta_info + '"> ' + switcher_versions[current_version]['hash'];
+    } else {
+      // Display the tag
+      var meta_info = ' (tag <a href="https://git.yoctoproject.org/yocto-docs/log?id=yocto-';
+      meta_info = meta_info + current_version;
+      meta_info = meta_info + '"> ' + current_version;
+    }
+    meta_info = meta_info + '</a>)';
+    return meta_info;
   }
 
   function build_doctype_select(current_doctype) {
@@ -264,6 +279,9 @@ by https://git.yoctoproject.org/yocto-autobuilder-helper/tree/scripts/run-docs-b
 
     $('.version_switcher_placeholder').html(version_select);
     $('.version_switcher_placeholder select').bind('change', on_version_switch);
+
+    var docs_meta_info = get_docs_meta_info(current_version);
+    $('.docs_meta_info_placeholder').html(docs_meta_info);
 
     var doctype_select = build_doctype_select(current_doctype);
 
