@@ -18,20 +18,13 @@ import os
 import itertools
 import re
 
-ourversion = None
-if len(sys.argv) == 2:
-    ourversion = sys.argv[1]
-
-ourversion = None
-if len(sys.argv) == 2:
-    ourversion = sys.argv[1]
-
+# Order matters: most recent to least recent
 activereleases = ["whinlatter", "scarthgap", "kirkstone"]
 devbranch = "wrynose"
 ltsseries = ["wrynose", "scarthgap", "kirkstone"]
 
 # used by run-docs-builds to get the default page
-if ourversion == "getlatest":
+if len(sys.argv) > 1 and sys.argv[1] == "getlatest":
     print(activereleases[0])
     sys.exit(0)
 
@@ -96,6 +89,7 @@ poky_mapping = {
     "3.1" : "23.0",
 }
 
+ourversion = None
 ourseries = None
 ourbranch = None
 bitbakeversion = None
