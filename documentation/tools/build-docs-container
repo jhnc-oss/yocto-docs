@@ -115,6 +115,7 @@ main ()
       essential=ubuntu_essential.sh
       docs=ubuntu_docs.sh
       docs_pdf=ubuntu_docs_pdf.sh
+      pip3=pip3_docs.sh
       ;;
     "fedora:39"*|\
     "fedora:40"*|\
@@ -151,6 +152,7 @@ main ()
       essential=ubuntu_essential.sh
       docs=ubuntu_docs.sh
       docs_pdf=ubuntu_docs_pdf.sh
+      pip3=pip3_docs.sh
       ;;
     *)
       echo "$image not supported!"
@@ -166,7 +168,7 @@ main ()
     --build-arg ESSENTIAL="host_packages_scripts/$essential" \
     --build-arg DOCS="host_packages_scripts/$docs" \
     --build-arg DOCS_PDF="host_packages_scripts/$docs_pdf" \
-    --build-arg PIP3="host_packages_scripts/${pip3:-}" \
+    --build-arg PIP3="host_packages_scripts/$pip3" \
     --file "$SCRIPT_DIR/containerfiles/$containerfile" \
     "$SCRIPT_DIR"
 

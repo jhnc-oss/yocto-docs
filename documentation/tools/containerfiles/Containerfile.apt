@@ -1,10 +1,22 @@
 ARG ARG_FROM=debian:12 # default value to avoid warning
 FROM $ARG_FROM
 
+# RUN . ./yocto-docs-venv/bin/activate doesn't work because env variables set
+# in RUN don't persist, so set up the virtualenv manually ahead of time.
+# Unsetting env variables in Containerfile is difficult, so we hope it works
+# fine without doing that for PYTHONHOME (see activate script content).
+# Note that the actual location depends on WORKDIR at this layer in the
+# container, and it must match the pwd when pip3_docs.sh is run in a later
+# layer. This *must* be outside of any mount point otherwise it won't be
+# available within the container.
+ENV VIRTUAL_ENV=$PWD/yocto-docs-venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 ARG INCLUDE_ESSENTIAL_PACKAGES=0
 ARG ESSENTIAL=ubuntu_essential.sh
 ARG DOCS=ubuntu_docs.sh
 ARG DOCS_PDF=ubuntu_docs_pdf.sh
+ARG PIP3=pip3_docs.sh
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG TZ=Europe/Vienna
@@ -13,6 +25,7 @@ ARG TZ=Europe/Vienna
 COPY --chmod=777 ${ESSENTIAL} /temp/host_packages_essential.sh
 COPY --chmod=777 ${DOCS} /temp/host_packages_docs.sh
 COPY --chmod=777 ${DOCS_PDF} /temp/host_packages_docs_pdf.sh
+COPY --chmod=777 ${PIP3} /temp/pip3_docs.sh
 
 RUN ln -fs "/usr/share/zoneinfo/$TZ" /etc/localtime \
  && apt-get update \
@@ -20,6 +33,7 @@ RUN ln -fs "/usr/share/zoneinfo/$TZ" /etc/localtime \
  && if [ "$INCLUDE_ESSENTIAL_PACKAGES" = "1" ]; then yes | /temp/host_packages_essential.sh; fi \
  && yes | /temp/host_packages_docs.sh \
  && yes | /temp/host_packages_docs_pdf.sh \
+ && yes | /temp/pip3_docs.sh \
  && apt-get --yes autoremove \
  && apt-get clean \
  && rm -rf /temp

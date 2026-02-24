@@ -171,6 +171,9 @@ Here are the packages needed to build Project documentation manuals:
 .. literalinclude:: ../tools/host_packages_scripts/ubuntu_docs.sh
    :language: shell
 
+.. literalinclude:: ../tools/host_packages_scripts/pip3_docs.sh
+   :language: shell
+
 In addition to the previous packages, here are the packages needed to build the
 documentation in PDF format:
 
