@@ -67,6 +67,7 @@ extensions = [
     'sphinx.ext.extlinks',
     'sphinx.ext.intersphinx',
     'sphinx_copybutton',
+    'sphinxcontrib.rsvgconverter',
     'yocto-vars'
 ]
 autosectionlabel_prefix_document = True
