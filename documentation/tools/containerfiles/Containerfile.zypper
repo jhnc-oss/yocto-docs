@@ -1,6 +1,17 @@
 ARG ARG_FROM=opensuse/leap:15.4 # default value to avoid warning
 FROM $ARG_FROM
 
+# RUN . ./yocto-docs-venv/bin/activate doesn't work because env variables set
+# in RUN don't persist, so set up the virtualenv manually ahead of time.
+# Unsetting env variables in Containerfile is difficult, so we hope it works
+# fine without doing that for PYTHONHOME (see activate script content).
+# Note that the actual location depends on WORKDIR at this layer in the
+# container, and it must match the pwd when pip3_docs.sh is run in a later
+# layer. This *must* be outside of any mount point otherwise it won't be
+# available within the container.
+ENV VIRTUAL_ENV=$PWD/yocto-docs-venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 ARG INCLUDE_ESSENTIAL_PACKAGES=0
 ARG ESSENTIAL=opensuse_essential.sh
 ARG DOCS=opensuse_docs.sh
