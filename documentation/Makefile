@@ -4,7 +4,7 @@
 # You can set these variables from the command line, and also
 # from the environment for the first two.
 SPHINXOPTS     ?= -W --keep-going -j auto
-SPHINXBUILD    ?= sphinx-build
+SPHINXBUILD    ?= python3 -m sphinx
 # Release notes are excluded because they contain contributor names and commit messages which can't be modified
 VALEOPTS       ?= --no-wrap --glob '!migration-guides/release-notes-*.rst'
 SOURCEDIR      = .
@@ -16,8 +16,8 @@ DESTDIR        = final
 SVG2PNG        = rsvg-convert
 SVG2PDF        = rsvg-convert
 
-ifeq ($(shell if which $(SPHINXBUILD) >/dev/null 2>&1; then echo 1; else echo 0; fi),0)
-$(error "The '$(SPHINXBUILD)' command was not found. Make sure you have Sphinx installed")
+ifeq ($(shell if $(SPHINXBUILD) --version >/dev/null 2>&1; then echo 1; else echo 0; fi),0)
+$(error "Sphinx was not found. Make sure you have it installed")
 endif
 
 # Put it first so that "make" without argument is like "make help".
