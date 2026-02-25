@@ -31,6 +31,12 @@ New Features / Enhancements in |yocto-ver|
      directory where OpenSSH host keys are stored. The default value is
      ``/etc/ssh``.
 
+   - :term:`SPDX_INCLUDE_KERNEL_CONFIG`: export the Linux kernel
+     configuration (``CONFIG_*`` parameters) into the SPDX document.
+
+   - :term:`SPDX_INCLUDE_PACKAGECONFIG`: export a recipe's
+     :term:`PACKAGECONFIG` features (enabled/disabled) into the SPDX document.
+
 -  Kernel-related changes:
 
 -  New core recipes:

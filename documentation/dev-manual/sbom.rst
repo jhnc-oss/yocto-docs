@@ -56,6 +56,12 @@ more information in the output :term:`SPDX` data:
 -  Add a description of the **compiled** source files used to generate host tools
    and target packages (:term:`SPDX_INCLUDE_COMPILED_SOURCES`)
 
+-  Export the Linux kernel configuration (``CONFIG_*`` parameters) into the
+   SPDX document (:term:`SPDX_INCLUDE_KERNEL_CONFIG`).
+
+-  Export the recipe's ``PACKAGECONFIG`` features (enabled/disabled) into the
+   SPDX document (:term:`SPDX_INCLUDE_PACKAGECONFIG`).
+
 -  Add archives of these source files themselves (:term:`SPDX_ARCHIVE_SOURCES`).
 
 Though the toplevel :term:`SPDX` output is available in

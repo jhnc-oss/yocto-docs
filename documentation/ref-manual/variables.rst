@@ -9096,6 +9096,49 @@ system and gives an overview of their function and contents.
       ``qemux86-64``, the uncompressed SBOM file can grow from hundreds
       of megabytes to several gigabytes.
 
+   :term:`SPDX_INCLUDE_KERNEL_CONFIG`
+      This option allows exporting the Linux kernel configuration
+      (the contents of the ``.config`` file) into the recipe's SPDX
+      document as a separate ``build_Build`` object. Each kernel
+      configuration parameter (``CONFIG_*``) is recorded and linked to
+      the main kernel object using an ``ancestorOf`` relationship.
+
+      .. note::
+
+         This variable only has effect when using the SPDX 3.0 output
+         format (see :ref:`ref-classes-create-spdx`).
+
+      Enable this option as follows::
+
+         SPDX_INCLUDE_KERNEL_CONFIG = "1"
+
+      When enabled, a separate SPDX object is created for the kernel
+      configuration, improving reproducibility, compliance tracking,
+      and auditing of build-time kernel features.
+
+   :term:`SPDX_INCLUDE_PACKAGECONFIG`
+      This option allows exporting a recipe's :term:`PACKAGECONFIG`
+      features into the recipe's SPDX document. Each feature is
+      recorded as a ``DictionaryEntry`` with key
+      ``PACKAGECONFIG:<feature>`` and value ``enabled`` or
+      ``disabled``, depending on whether the feature is active in
+      the current build.
+
+      .. note::
+
+         This variable only has effect when using the SPDX 3.0 output
+         format (see :ref:`ref-classes-create-spdx`).
+
+      Enable this option as follows::
+
+         SPDX_INCLUDE_PACKAGECONFIG = "1"
+
+      When enabled, the build-time configuration of each recipe is
+      captured in the SPDX document, improving transparency,
+      reproducibility, and security auditing. It allows consumers of
+      the SPDX SBOM to determine which optional features were
+      enabled or disabled in a given build.
+
    :term:`SPDX_INCLUDE_SOURCES`
       This option allows to add a description of the source files used to build
       the host tools and the target packages, to the ``spdx.json`` files in
