@@ -11,57 +11,72 @@
 #
 
 
+import json
 import subprocess
 import collections
 import sys
 import os
 import itertools
 
-# Order matters: most recent to least recent
+from urllib.request import urlopen, URLError
+
+# NOTE: these variables contain default values in case we are not able to fetch
+# the releases.json file from https://dashboard.yoctoproject.org/releases.json
 activereleases = ["whinlatter", "scarthgap", "kirkstone"]
 devbranch = "wrynose"
 ltsseries = ["wrynose", "scarthgap", "kirkstone"]
+release_series = collections.OrderedDict({
+    "wrynose": "6.0",
+    "whinlatter": "5.3",
+    "scarthgap": "5.0",
+    "kirkstone": "4.0",
+})
+
+releases_from_json = {}
+
+# Use the local releases.json file if found, fetch it from the dashboard
+# otherwise
+releases_json_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "releases.json")
+try:
+    with open(releases_json_path, "r") as f:
+        releases_from_json = json.load(f)
+except FileNotFoundError:
+    try:
+        with urlopen("https://dashboard.yoctoproject.org/releases.json") as r, \
+                open(releases_json_path, "w") as f:
+            releases_from_json = json.load(r)
+            json.dump(releases_from_json, f)
+    except URLError:
+        print("WARNING: tried to fetch https://dashboard.yoctoproject.org/releases.json "
+              "but failed, using default values for active releases")
+        pass
+
+if releases_from_json:
+    release_series = collections.OrderedDict()
+    activereleases = []
+    devbranch = ""
+    ltsseries = []
+
+    for release in releases_from_json:
+        codename = release["release_codename"].lower()
+        release_series[codename] = release["series_version"]
+        if release["status"] == "Active Development":
+            devbranch = codename
+        if release["series"] == "current":
+            activereleases.append(codename)
+        if "LTS until" in release["status"]:
+            ltsseries.append(codename)
+
+    activereleases.remove(devbranch)
 
 # used by run-docs-builds to get the default page
 if len(sys.argv) > 1 and sys.argv[1] == "getlatest":
     print(activereleases[0])
     sys.exit(0)
 
-release_series = collections.OrderedDict()
-release_series["wrynose"] = "6.0"
-release_series["whinlatter"] = "5.3"
-release_series["walnascar"] = "5.2"
-release_series["styhead"] = "5.1"
-release_series["scarthgap"] = "5.0"
-release_series["nanbield"] = "4.3"
-release_series["mickledore"] = "4.2"
-release_series["langdale"] = "4.1"
-release_series["kirkstone"] = "4.0"
-release_series["honister"] = "3.4"
-release_series["hardknott"] = "3.3"
-release_series["gatesgarth"] = "3.2"
-release_series["dunfell"] = "3.1"
-release_series["zeus"] = "3.0"
-release_series["warrior"] = "2.7"
-release_series["thud"] = "2.6"
-release_series["sumo"] = "2.5"
-release_series["rocko"] = "2.4"
-release_series["pyro"] = "2.3"
-release_series["morty"] = "2.2"
-release_series["krogoth"] = "2.1"
-release_series["jethro"] = "2.0"
-release_series["jethro-pre"] = "1.9"
-release_series["fido"] = "1.8"
-release_series["dizzy"] = "1.7"
-release_series["daisy"] = "1.6"
-release_series["dora"] = "1.5"
-release_series["dylan"] = "1.4"
-release_series["danny"] = "1.3"
-release_series["denzil"] = "1.2"
-release_series["edison"] = "1.1"
-release_series["bernard"] = "1.0"
-release_series["laverne"] = "0.9"
-
+print(f"activereleases calculated to be {activereleases}")
+print(f"devbranch calculated to be {devbranch}")
+print(f"ltsseries calculated to be {ltsseries}")
 
 bitbake_mapping = {
     "wrynose" : "2.18",
