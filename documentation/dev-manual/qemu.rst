@@ -54,7 +54,7 @@ available. Follow these general steps to run QEMU:
    depends on how you installed QEMU:
 
    -  If you followed :doc:`/dev-manual/start`, either use ``bitbake-setup`` or source
-      the environment setup script manually::
+      the environment setup script manually:
 
       .. code-block:: console
 
