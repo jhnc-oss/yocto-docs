@@ -50,17 +50,59 @@ def get_releases(releases: Dict[str, Any]) -> Tuple[List[str], str, List[str],
 
     return activereleases, devbranch, ltsseries, release_series
 
+# Get the active releases:
+# If we find an external releases.json through EXTERNAL_RELEASES_JSON, use that.
+# Print a warning in case the external releases.json's active releases does not
+# match our internal releases.json, as it means ours need updating.
+# If there's no external releases.json, just use the internal releases.json file.
+
 releases = {}
+activereleases = []
+devbranch = ""
+ltsseries = []
+release_series = collections.OrderedDict()
 
-with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "releases.json"), "r") as f:
-    releases = json.load(f)
+external_releases_json = os.getenv("EXTERNAL_RELEASES_JSON", None)
+if external_releases_json is not None:
+    with open(external_releases_json, "r") as f:
+        releases = json.load(f)
 
-activereleases, devbranch, ltsseries, release_series = get_releases(releases)
+    activereleases, devbranch, ltsseries, release_series = get_releases(releases)
+
+try:
+    with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "releases.json"), "r") as f:
+        releases = json.load(f)
+except FileNotFoundError:
+    if not activereleases:
+        raise FileNotFoundError(
+            "CRITICAL: local releases.json not found and no external "
+            "releases.json file was provided with EXTERNAL_RELEASES_JSON, cannot continue"
+        )
+
+activereleases_i, devbranch_i, ltsseries_i, release_series_i = get_releases(releases)
+
+if not activereleases:
+    activereleases = activereleases_i
+    devbranch = devbranch_i
+    ltsseries = ltsseries_i
+    release_series = release_series_i
 
 # used by run-docs-builds to get the default page
 if len(sys.argv) > 1 and sys.argv[1] == "getlatest":
     print(activereleases[0])
     sys.exit(0)
+
+if activereleases_i != activereleases:
+    print("WARNING: The external releases.json file has different active releases: "
+          f"local {activereleases_i} != external {activereleases}\n"
+          "Update of this file at "
+          "https://git.yoctoproject.org/yocto-docs/tree/documentation/releases.json "
+          "may be needed\n"
+          "Update using './documentation/tools/fetch-releases-json "
+          "documentation/releases.json' from yocto-docs")
+
+if external_releases_json:
+    print(f"Using external {external_releases_json}")
 
 print(f"activereleases calculated to be {activereleases}")
 print(f"devbranch calculated to be {devbranch}")
