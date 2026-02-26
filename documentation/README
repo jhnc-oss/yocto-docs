@@ -109,6 +109,15 @@ dependencies in a virtual environment:
  $ pipenv install
  $ pipenv run make html
 
+Updating the releases.json file
+===============================
+
+The Yocto Project documentation uses the documentation/releases.json to know
+which releases are currently supported and which are obsolete. This file can be
+updated using the the following command:
+
+  $ ./documentation/tools/fetch-releases-json documentation/releases.json
+
 Style checking the Yocto Project documentation
 ==============================================
 
