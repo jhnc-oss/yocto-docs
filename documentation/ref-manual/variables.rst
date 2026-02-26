@@ -5890,6 +5890,13 @@ system and gives an overview of their function and contents.
       For the directory containing logs specific to each task, see the
       :term:`T` variable.
 
+   :term:`LTO`
+      The :term:`LTO` variable defines the flags specific to the ``lto``
+      :term:`distro feature <DISTRO_FEATURES>`. The value of this variable is
+      appended to the :term:`TARGET_LDFLAGS` variable, adding `Link-Time
+      Optimisation <https://wiki.gentoo.org/wiki/LTO>`__ flags to the linker
+      in-use.
+
    :term:`MACHINE`
       Specifies the target device for which the image is built. You define
       :term:`MACHINE` in the ``local.conf`` file found in the
