@@ -9,8 +9,12 @@ FROM $ARG_FROM
 # container, and it must match the pwd when pip3_docs.sh is run in a later
 # layer. This *must* be outside of any mount point otherwise it won't be
 # available within the container.
-ENV VIRTUAL_ENV=$PWD/yocto-docs-venv
+ENV VIRTUAL_ENV=/yocto-docs-venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Set the WORKDIR to / so the pip3_docs.sh script will find our virtual env
+# when calling '. ./yocto-docs-venv/bin/activate'.
+WORKDIR /
 
 ARG INCLUDE_ESSENTIAL_PACKAGES=0
 ARG ESSENTIAL=opensuse_essential.sh
