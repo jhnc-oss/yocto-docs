@@ -9191,6 +9191,22 @@ system and gives an overview of their function and contents.
       (+ 0.07\% with the tested image), compared to just enabling
       :term:`SPDX_INCLUDE_SOURCES`.
 
+   :term:`SPDX_CONCLUDED_LICENSE`
+      The :term:`SPDX_CONCLUDED_LICENSE` variable allows overriding the
+      ``hasConcludedLicense`` object to individual SBOM packages. This can be
+      used when the license of a package was determined to be different than the
+      original license string value, after analysis.
+
+      This variable can be set in two ways:
+
+      -  For the entire recipe::
+
+            SPDX_CONCLUDED_LICENSE = "MIT & Apache-2.0"
+
+      -  For an individual package produced by the recipe::
+
+            SPDX_CONCLUDED_LICENSE:${PN} = "MIT & Apache-2.0"
+
    :term:`SPDX_CUSTOM_ANNOTATION_VARS`
       This option allows to associate `SPDX annotations
       <https://spdx.github.io/spdx-spec/v2.3/annotations/>`__ to a recipe,
