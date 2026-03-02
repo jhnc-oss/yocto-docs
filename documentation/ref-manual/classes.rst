@@ -1891,6 +1891,11 @@ generation provided by :ref:`ref-classes-create-spdx`.
 ``npm``
 =======
 
+.. warning::
+
+   The NPM fetcher is currently disabled due to security concerns. See
+   :bitbake_rev:`355cd226e0720a9ed7683bb01c8c0a58eee03664` for more information.
+
 Provides support for building Node.js software fetched using the
 :wikipedia:`node package manager (NPM) <Npm_(software)>`.
 
