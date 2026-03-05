@@ -72,6 +72,7 @@ supported on the following distributions:
 -  Fedora 40
 -  Fedora 41
 -  Fedora 42
+-  Fedora 43
 -  OpenSUSE Leap 15.5
 -  OpenSUSE Leap 15.6
 -  Rocky Linux 8
