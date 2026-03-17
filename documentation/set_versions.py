@@ -31,6 +31,12 @@ release_series = collections.OrderedDict({
     "scarthgap": "5.0",
     "kirkstone": "4.0",
 })
+bitbake_mapping = collections.OrderedDict({
+    "wrynose": "2.18",
+    "whinlatter": "2.16",
+    "scarthgap": "2.8",
+    "kirkstone": "2.0",
+})
 
 releases_from_json = {}
 
@@ -57,6 +63,7 @@ if releases_from_json:
     activereleases = []
     devbranch = ""
     ltsseries = []
+    bitbake_mapping = collections.OrderedDict()
 
     for release in releases_from_json:
         codename = release["release_codename"].lower()
@@ -67,6 +74,8 @@ if releases_from_json:
             activereleases.append(codename)
         if "LTS until" in release["status"]:
             ltsseries.append(codename)
+        if release["bitbake_version"]:
+            bitbake_mapping[codename] = release["bitbake_version"]
 
     activereleases.remove(devbranch)
 
@@ -78,22 +87,6 @@ if len(sys.argv) > 1 and sys.argv[1] == "getlatest":
 print(f"activereleases calculated to be {activereleases}")
 print(f"devbranch calculated to be {devbranch}")
 print(f"ltsseries calculated to be {ltsseries}")
-
-bitbake_mapping = {
-    "wrynose" : "2.18",
-    "whinlatter" : "2.16",
-    "walnascar" : "2.12",
-    "styhead" : "2.10",
-    "scarthgap" : "2.8",
-    "nanbield" : "2.6",
-    "mickledore" : "2.4",
-    "langdale" : "2.2",
-    "kirkstone" : "2.0",
-    "honister" : "1.52",
-    "hardknott" : "1.50",
-    "gatesgarth" : "1.48",
-    "dunfell" : "1.46",
-}
 
 # 3.4 onwards doesn't have poky version
 # Early 3.4 release docs do reference it though
