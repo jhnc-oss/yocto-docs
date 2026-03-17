@@ -88,15 +88,6 @@ print(f"activereleases calculated to be {activereleases}")
 print(f"devbranch calculated to be {devbranch}")
 print(f"ltsseries calculated to be {ltsseries}")
 
-# 3.4 onwards doesn't have poky version
-# Early 3.4 release docs do reference it though
-poky_mapping = {
-    "3.4" : "26.0",
-    "3.3" : "25.0",
-    "3.2" : "24.0",
-    "3.1" : "23.0",
-}
-
 ourversion = None
 ourseries = None
 ourbranch = None
@@ -235,6 +226,15 @@ replacements = {
     "YOCTO_DOC_VERSION" : ourversion,
     "DOCCONF_VERSION" : ourversion,
     "BITBAKE_SERIES" : bitbakeversion,
+}
+
+# 3.4 onwards doesn't have poky version
+# Early 3.4 release docs do reference it though
+poky_mapping = {
+    "3.4": "26.0",
+    "3.3": "25.0",
+    "3.2": "24.0",
+    "3.1": "23.0",
 }
 
 if release_series[ourseries] in poky_mapping:
