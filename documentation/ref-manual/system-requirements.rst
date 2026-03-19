@@ -70,7 +70,6 @@ supported on the following distributions:
 -  Debian GNU/Linux 13 (Trixie)
 -  Fedora 39
 -  Fedora 40
--  Fedora 41
 -  Fedora 42
 -  Fedora 43
 -  OpenSUSE Leap 15.5
@@ -92,7 +91,6 @@ organizations publishing them no longer make updates publicly available:
 
 -  Fedora 39
 -  Fedora 40
--  Fedora 41
 -  OpenSUSE Leap 15.5
 -  Ubuntu 25.04
 
