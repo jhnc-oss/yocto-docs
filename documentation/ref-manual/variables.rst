@@ -9191,6 +9191,22 @@ system and gives an overview of their function and contents.
       (+ 0.07\% with the tested image), compared to just enabling
       :term:`SPDX_INCLUDE_SOURCES`.
 
+   :term:`SPDX_BUILD_HOST`
+      The base variable name describing the build host on which the build is
+      running. The value must name a key from ``SPDX_IMPORTS``, allowing
+      the generated SPDX to reference externally defined host identity data.
+
+      Requires :term:`SPDX_INCLUDE_BITBAKE_PARENT_BUILD` to be set to ``"1"``.
+
+      .. warning::
+
+         Setting this variable will result in non-reproducible SPDX output,
+         because the build host identity may vary across builds.
+
+      See also :term:`SPDX_INCLUDE_BITBAKE_PARENT_BUILD`,
+      ``SPDX_IMPORTS``, :term:`SPDX_INVOKED_BY`,
+      and :term:`SPDX_ON_BEHALF_OF`.
+
    :term:`SPDX_CONCLUDED_LICENSE`
       The :term:`SPDX_CONCLUDED_LICENSE` variable allows overriding the
       ``hasConcludedLicense`` object to individual SBOM packages. This can be
@@ -9232,6 +9248,78 @@ system and gives an overview of their function and contents.
              "comment": "ANNOTATION2=Second annotation for recipe"
            }
          ],
+
+   :term:`SPDX_FILE_EXCLUDE_PATTERNS`
+      A space-separated list of Python regular expressions used to exclude files
+      from the SPDX output when :term:`SPDX_INCLUDE_SOURCES` is enabled.
+      Files whose paths match any of the patterns, via ``re.search()``, are
+      filtered out from the generated SBOM.
+
+      By default this variable is empty, meaning no files are excluded.
+
+      Example usage::
+
+         SPDX_FILE_EXCLUDE_PATTERNS = "\\.patch$ \\.diff$ /test/ \\.pyc$ \\.o$"
+
+      See also :term:`SPDX_INCLUDE_SOURCES`.
+
+   :term:`SPDX_IMAGE_SUPPLIER`
+      The name of an agent variable prefix describing the organization or
+      person who supplies the image SBOM. When set, the supplier is attached
+      to all root elements of the image SBOM using the ``suppliedBy`` property.
+
+      The value of this variable is the base prefix used to look up the
+      agent's details. The following sub-variables are read using that prefix:
+
+      -  ``<PREFIX>_name``: display name of the supplier (required)
+      -  ``<PREFIX>_type``: agent type: ``organization``, ``person``,
+         ``software``, or ``agent`` (optional, defaults to ``agent``)
+      -  ``<PREFIX>_comment``: free-text comment (optional)
+      -  ``<PREFIX>_id_email``: contact e-mail address (optional)
+
+      The simplest approach is to use the variable itself as its own prefix,
+      so the sub-variable names follow directly from
+      ``SPDX_IMAGE_SUPPLIER``.
+
+      Example (set in the image recipe or in a :term:`configuration file`)::
+
+         SPDX_IMAGE_SUPPLIER = "SPDX_IMAGE_SUPPLIER"
+         SPDX_IMAGE_SUPPLIER_name = "Acme Corp"
+         SPDX_IMAGE_SUPPLIER_type = "organization"
+
+      Alternatively, you can use any other prefix name, which is useful for
+      sharing an agent definition across multiple supplier variables::
+
+         MY_COMPANY_name = "Acme Corp"
+         MY_COMPANY_type = "organization"
+         SPDX_IMAGE_SUPPLIER = "MY_COMPANY"
+         SPDX_SDK_SUPPLIER = "MY_COMPANY"
+
+      If not set, no supplier information is added to the image SBOM.
+
+      See also :term:`SPDX_PACKAGE_SUPPLIER` and :term:`SPDX_SDK_SUPPLIER`.
+
+   :term:`SPDX_INCLUDE_BITBAKE_PARENT_BUILD`
+      When set to ``"1"``, the SPDX output will include a ``Build`` object
+      representing the parent :term:`BitBake` invocation. This allows consumers
+      of the SBOM to trace which CI/CD job or orchestration system triggered
+      the build.
+
+      This variable is required for :term:`SPDX_INVOKED_BY`,
+      :term:`SPDX_ON_BEHALF_OF`, and :term:`SPDX_BUILD_HOST` to have any
+      effect.
+
+      .. warning::
+
+         Enabling this variable will result in non-reproducible SPDX output,
+         because the build invocation identity changes with every run.
+
+      Enable as follows::
+
+         SPDX_INCLUDE_BITBAKE_PARENT_BUILD = "1"
+
+      See also :term:`SPDX_BUILD_HOST`, :term:`SPDX_INVOKED_BY`,
+      and :term:`SPDX_ON_BEHALF_OF`.
 
    :term:`SPDX_INCLUDE_COMPILED_SOURCES`
       This option allows the same as :term:`SPDX_INCLUDE_SOURCES` but including
@@ -9331,6 +9419,33 @@ system and gives an overview of their function and contents.
       increases the SBOM size (potentially by several gigabytes for typical
       images).
 
+   :term:`SPDX_INVOKED_BY`
+      The base variable name describing the agent that invoked the build.
+      Each ``Build`` object in the SPDX output is linked to this agent with an
+      ``invokedBy`` relationship. Requires
+      :term:`SPDX_INCLUDE_BITBAKE_PARENT_BUILD` to be set to ``"1"``.
+
+      The sub-variables follow the same agent prefix convention as
+      :term:`SPDX_IMAGE_SUPPLIER`:
+
+      -  ``SPDX_INVOKED_BY_name``: display name of the invoking agent
+      -  ``SPDX_INVOKED_BY_type``: agent type, such as ``software`` for a CI system
+
+      Example (CI pipeline invoking the build)::
+
+         SPDX_INCLUDE_BITBAKE_PARENT_BUILD = "1"
+         SPDX_INVOKED_BY = "SPDX_INVOKED_BY"
+         SPDX_INVOKED_BY_name = "GitLab CI"
+         SPDX_INVOKED_BY_type = "software"
+
+      .. warning::
+
+         Setting this variable will likely result in non-reproducible SPDX
+         output, because the invoking agent identity varies across builds.
+
+      See also :term:`SPDX_INCLUDE_BITBAKE_PARENT_BUILD`,
+      :term:`SPDX_ON_BEHALF_OF`, and :term:`SPDX_BUILD_HOST`.
+
    :term:`SPDX_LICENSES`
       Path to the JSON file containing SPDX license identifier mappings.
       This file maps common license names to official SPDX license
@@ -9359,6 +9474,52 @@ system and gives an overview of their function and contents.
       and the prefix of ``documentNamespace``. It is set by default to
       ``http://spdx.org/spdxdoc``.
 
+   :term:`SPDX_ON_BEHALF_OF`
+      The base variable name describing the agent on whose behalf the invoking
+      agent (:term:`SPDX_INVOKED_BY`) is running the build. Requires
+      :term:`SPDX_INCLUDE_BITBAKE_PARENT_BUILD` to be set to ``"1"``.
+      Has no effect if :term:`SPDX_INVOKED_BY` is not also set.
+
+      The sub-variables follow the same agent prefix convention as
+      :term:`SPDX_IMAGE_SUPPLIER`:
+
+      -  ``SPDX_ON_BEHALF_OF_name``: display name of the commissioning agent
+      -  ``SPDX_ON_BEHALF_OF_type``: agent type, such as ``organization``
+
+      Example (CI system building on behalf of a customer organization)::
+
+         SPDX_INCLUDE_BITBAKE_PARENT_BUILD = "1"
+         SPDX_INVOKED_BY = "SPDX_INVOKED_BY"
+         SPDX_INVOKED_BY_name = "GitLab CI"
+         SPDX_INVOKED_BY_type = "software"
+         SPDX_ON_BEHALF_OF = "SPDX_ON_BEHALF_OF"
+         SPDX_ON_BEHALF_OF_name = "Acme Corp"
+         SPDX_ON_BEHALF_OF_type = "organization"
+
+      .. warning::
+
+         Setting this variable will likely result in non-reproducible SPDX
+         output, because the agent identity varies across builds.
+
+      See also :term:`SPDX_INCLUDE_BITBAKE_PARENT_BUILD`,
+      :term:`SPDX_INVOKED_BY`, and :term:`SPDX_BUILD_HOST`.
+
+   :term:`SPDX_PACKAGE_SUPPLIER`
+      The base variable name describing the agent who supplies the artifacts
+      produced by the build. Works identically to :term:`SPDX_IMAGE_SUPPLIER`
+      but applies to individual packages rather than the image SBOM.
+
+      Typically set in a distro :term:`configuration file` to apply globally
+      to all packages, or in a specific software recipe (or a ``.bbappend``)
+      to apply only to packages of that recipe. Recipe-level overrides
+      (``SPDX_PACKAGE_SUPPLIER:pn-<recipe>``) are also supported::
+
+         SPDX_PACKAGE_SUPPLIER = "SPDX_PACKAGE_SUPPLIER"
+         SPDX_PACKAGE_SUPPLIER_name = "Acme Corp"
+         SPDX_PACKAGE_SUPPLIER_type = "organization"
+
+      See also :term:`SPDX_IMAGE_SUPPLIER` and :term:`SPDX_SDK_SUPPLIER`.
+
    :term:`SPDX_PACKAGE_URL`
       Provides a place for the SPDX data creator to record the package URL
       string (``software_packageUrl``), in accordance with the Package URL
@@ -9380,6 +9541,22 @@ system and gives an overview of their function and contents.
       The generated SPDX files are approximately 20% bigger, but
       this option is recommended if you want to inspect the SPDX
       output files with a text editor.
+
+   :term:`SPDX_SDK_SUPPLIER`
+      The base variable name describing the agent who supplies the SDK SBOM.
+      When set, the supplier is attached to all root elements of the SDK
+      SBOM using the ``suppliedBy`` property.
+
+      Works identically to :term:`SPDX_IMAGE_SUPPLIER` but applies to SDK
+      builds. This includes image-based SDKs produced by
+      ``bitbake <image> -c populate_sdk`` as well as toolchain SDKs produced
+      by ``bitbake meta-toolchain``.
+
+      Typically set in the image recipe or in a :term:`configuration file`.
+
+      If not set, no supplier information is added to the SDK SBOM.
+
+      See also :term:`SPDX_IMAGE_SUPPLIER` and :term:`SPDX_PACKAGE_SUPPLIER`.
 
    :term:`SPDX_UUID_NAMESPACE`
       The namespace used for generating UUIDs in SPDX documents. This
