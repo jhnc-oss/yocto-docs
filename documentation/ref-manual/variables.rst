@@ -3510,6 +3510,184 @@ system and gives an overview of their function and contents.
       The default value is set to "x509" by the
       :ref:`ref-classes-kernel-fit-image` class.
 
+   :term:`FIT_LOADABLE_ARCH`
+      Architecture the loadables defined in :term:`FIT_LOADABLES`; the value
+      will be used for the ``arch`` property of the loadable.
+      If no value is defined for a specific loadable, the kernel architecture
+      will be used.
+
+      This variable cannot be used directly, but only defining flags on it.
+
+      Example::
+
+         FIT_LOADABLES = "foo"
+         FIT_LOADABLE_ARCH[foo] = "arm"
+
+   :term:`FIT_LOADABLE_COMPRESSION`
+      Compression type for the loadables defined in :term:`FIT_LOADABLES`; the
+      value will be used for the ``compression`` property of the loadable.
+      If no value is defined for a specific loadable, its ``compression``
+      property will be set to ``none``.
+
+      This variable cannot be used directly, but only defining flags on it.
+
+      Example::
+
+         FIT_LOADABLES = "foo"
+         FIT_LOADABLE_COMPRESSION[foo] = "gzip"
+
+      .. note::
+
+         The binary should already be compressed, as no compression is
+         performed by the :ref:`ref-classes-kernel-fit-image` class.
+
+   :term:`FIT_LOADABLE_DESCRIPTION`
+      Description for the loadables defined in :term:`FIT_LOADABLES`; the value
+      will be used for the ``description`` property of the loadable.
+      If no value is defined for a specific loadable, its description will be
+      set to the loadable name followed by a space plus the string ``loadable``.
+
+      This variable cannot be used directly, but only defining flags on it.
+
+      Example::
+
+         FIT_LOADABLES = "foo"
+         FIT_LOADABLE_DESCRIPTION[foo] = "Foo firmware binary"
+
+   :term:`FIT_LOADABLE_ENTRYPOINT`
+      Entry point for the loadables defined in :term:`FIT_LOADABLES`; the value
+      will be used for the ``entry`` property of the loadable.
+      If no value is defined for a specific loadable, the ``entry`` property
+      will be omitted.
+
+      This variable cannot be used directly, but only defining flags on it.
+
+      Example::
+
+         FIT_LOADABLES = "foo"
+         FIT_LOADABLE_ENTRYPOINT[foo] = "0x80234000"
+
+   :term:`FIT_LOADABLE_FILENAME`
+      Filename (or relative path) for the loadables defined in
+      :term:`FIT_LOADABLES`; this will be used to search for the binary to
+      include and is therefore mandatory for each loadable. Binary files to be
+      included need to be located in :term:`DEPLOY_DIR_IMAGE`.
+
+      This variable cannot be used directly, but only defining flags on it.
+
+      Example::
+
+         FIT_LOADABLES = "foo"
+         FIT_LOADABLE_FILENAME[foo] = "foo-firmware.bin"
+
+   :term:`FIT_LOADABLE_LOADADDRESS`
+      Load address for the loadables defined in :term:`FIT_LOADABLES`; the
+      value will be used for the ``load`` property of the loadable.
+      This is mandatory for each loadable.
+
+      This variable cannot be used directly, but only defining flags on it.
+
+      Example::
+
+         FIT_LOADABLES = "foo"
+         FIT_LOADABLE_LOADADDRESS[foo] = "0x80230000"
+
+   :term:`FIT_LOADABLE_OS`
+      Operating system for the loadables defined in :term:`FIT_LOADABLES`; the
+      value will be used for the ``os`` property of the loadable.
+      If no value is defined for a specific loadable, the ``os`` property will
+      be set to ``linux``.
+
+      This variable cannot be used directly, but only defining flags on it.
+
+      Example::
+
+         FIT_LOADABLES = "foo"
+         FIT_LOADABLE_OS[foo] = "linux"
+
+   :term:`FIT_LOADABLE_TYPE`
+      Type for the loadables defined in :term:`FIT_LOADABLES`; the value will
+      be used for the ``type`` property of the loadable.
+      If no value is defined for a specific loadable, the ``type`` property
+      will be set to ``firmware``.
+
+      This variable cannot be used directly, but only defining flags on it.
+
+      Example::
+
+         FIT_LOADABLES = "foo"
+         FIT_LOADABLE_TYPE[foo] = "firmware"
+
+   :term:`FIT_LOADABLES`
+      Space-separated list of loadables to add to a FIT image in addition to
+      regular ones (kernel, initramfs, dtsb etc.).
+      Values specified here will be used as node names inside the FIT image;
+      all of them will be included in all configurations by using the
+      ``loadables`` property.
+
+      For each loadable specified in this variable, additional parameters can be
+      defined using :term:`FIT_LOADABLE_ARCH`, :term:`FIT_LOADABLE_COMPRESSION`,
+      :term:`FIT_LOADABLE_DESCRIPTION`, :term:`FIT_LOADABLE_ENTRYPOINT`,
+      :term:`FIT_LOADABLE_FILENAME`, :term:`FIT_LOADABLE_LOADADDRESS`,
+      :term:`FIT_LOADABLE_OS` and :term:`FIT_LOADABLE_TYPE`.
+
+      This variable is used by the :ref:`ref-classes-kernel-fit-image` class and
+      is empty by default.
+
+      For example, the following configuration adds as loadables a TF-A BL31
+      firmware and a (compressed) TEE firmware, to be loaded respectively at
+      0x204E0000 and 0x96000000::
+
+         FIT_LOADABLES = "atf tee"
+
+         FIT_LOADABLE_FILENAME[atf] = "bl31.bin"
+         FIT_LOADABLE_DESCRIPTION[atf] = "TF-A Firmware"
+         FIT_LOADABLE_TYPE[atf] = "tfa-bl31"
+         FIT_LOADABLE_ARCH[atf] = "arm64"
+         FIT_LOADABLE_OS[atf] = "arm-trusted-firmware"
+         FIT_LOADABLE_LOADADDRESS[atf] = "0x204E0000"
+         FIT_LOADABLE_ENTRYPOINT[atf] = "0x204E0000"
+
+         FIT_LOADABLE_FILENAME[tee] = "tee.bin.gz"
+         FIT_LOADABLE_COMPRESSION[tee] = "gzip"
+         FIT_LOADABLE_TYPE[tee] = "tee"
+         FIT_LOADABLE_OS[tee] = "tee"
+         FIT_LOADABLE_LOADADDRESS[tee] = "0x96000000"
+
+      and will be converted to the following FIT source::
+
+         images {
+                 atf {
+                         description = "TF-A Firmware";
+                         type = "tfa-bl31";
+                         compression = "none";
+                         data = /incbin/("<DEPLOY_DIR_IMAGE>/bl31.bin");
+                         arch = "arm64";
+                         os = "arm-trusted-firmware";
+                         load = <0x204E0000>;
+                         entry = <0x204E0000>;
+                 };
+                 tee {
+                         description = "tee loadable";
+                         type = "tee";
+                         compression = "gzip";
+                         data = /incbin/("<DEPLOY_DIR_IMAGE>/tee.bin.gz");
+                         arch = "arm64";
+                         os = "tee";
+                         load = <0x96000000>;
+                 };
+         };
+
+         configurations {
+                 default = "<my-board>.dtb";
+                 <my-board>.dtb {
+                         description = "1 Linux kernel, FDT blob, loadables";
+                         kernel = "kernel-1";
+                         fdt = "<my-board>.dtb";
+                         loadables = "atf", "tee";
+                 };
+         };
+
    :term:`FIT_MKIMAGE_EXTRA_OPTS`
       When inheriting the :ref:`ref-classes-kernel-fit-image`, the
       :term:`FIT_MKIMAGE_EXTRA_OPTS` variable allows passing extra options to
