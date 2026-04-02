@@ -236,6 +236,8 @@ with a supported AlmaLinux distribution:
 .. literalinclude:: ../tools/host_packages_scripts/almalinux_essential.sh
    :language: shell
 
+.. include:: buildtools-alma-centos-rocky-9.rst
+
 .. note::
 
    -  Extra Packages for Enterprise Linux (i.e. ``epel-release``) is
@@ -285,6 +287,8 @@ with a supported CentOS Stream distribution:
 .. literalinclude:: ../tools/host_packages_scripts/centosstream_essential.sh
    :language: shell
 
+.. include:: buildtools-alma-centos-rocky-9.rst
+
 Here are the packages needed to build Project documentation manuals:
 
 .. literalinclude:: ../tools/host_packages_scripts/centosstream_docs.sh
@@ -320,6 +324,8 @@ with a supported RockyLinux distribution:
 
 .. literalinclude:: ../tools/host_packages_scripts/rockylinux_essential.sh
    :language: shell
+
+.. include:: buildtools-alma-centos-rocky-9.rst
 
 .. note::
 
