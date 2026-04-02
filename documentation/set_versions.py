@@ -139,6 +139,11 @@ if ourversion is None:
         possible_branch = None
         branch_count = 0
         for b in itertools.chain(release_series.keys(), ["master"]):
+            # The laverne branch was created but never branched off, which
+            # breaks this algorithm as this always gets count 0. Skip this
+            # branch as it is old and we'll never branch off of it now.
+            if b == "laverne":
+                continue
             result = subprocess.run(["git", "log", "--format=oneline", "HEAD..origin/" + b],
                                     stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                     universal_newlines=True)
