@@ -124,7 +124,10 @@ for t in tags.split():
         for series in release_series:
             if release_series[series] == seriesversion:
                 ourseries = series
-                bitbakeversion = bitbake_mapping[ourseries]
+                if ourseries == devbranch:
+                    bitbakeversion = "dev"
+                else:
+                    bitbakeversion = bitbake_mapping[ourseries]
                 break
         break
 
