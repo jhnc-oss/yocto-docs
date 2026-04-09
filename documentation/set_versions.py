@@ -118,7 +118,9 @@ tags = subprocess.run(["git", "tag", "--points-at", "HEAD"],
 for t in tags.split():
     if t.startswith("yocto-"):
         ourversion = t[6:]
-        seriesversion = ".".join(ourversion.split(".")[0:2])
+        # remove "_MX" milestone information to get the series
+        seriesversion = ourversion.split("_")[0]
+        seriesversion = ".".join(seriesversion.split(".")[0:2])
         for series in release_series:
             if release_series[series] == seriesversion:
                 ourseries = series
