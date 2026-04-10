@@ -200,8 +200,6 @@ metadata, as extra layers can define their own:
 
 -  *pci:* Include PCI bus support.
 
--  *pcmcia:* Include PCMCIA/CompactFlash support.
-
 -  *pni-names:* Enable generation of persistent network interface names, i.e.
    the system tries hard to have the same but unique names for the network
    interfaces even after a reinstall.
