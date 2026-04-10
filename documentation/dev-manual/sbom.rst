@@ -31,9 +31,20 @@ If needed, it can be disabled from a :term:`configuration file`::
 
    INHERIT_DISTRO:remove = "create-spdx"
 
-Upon building an image, you will then get the :term:`SPDX` output in JSON format
-as an ``IMAGE-MACHINE.spdx.json`` file in ``tmp/deploy/images/MACHINE/`` inside
-the :term:`Build Directory`.
+There are two ways to generate SBOM metadata:
+
+-  By building an image, you will then get the :term:`SPDX` output in JSON format
+   as an ``IMAGE-MACHINE.spdx.json`` file in ``tmp/deploy/images/MACHINE/`` inside
+   the :term:`Build Directory`.
+
+-  By generating the SBOM document using the recipe metadata only:
+
+   .. code-block:: console
+
+      $ bitbake <recipe> -c create_recipe_sbom
+
+   Note that recipe SBOM is also included in the image SBOM document (for the
+   recipes involved in the build of the image only).
 
 The :ref:`ref-classes-create-spdx` class offers options to include
 more information in the output :term:`SPDX` data:
