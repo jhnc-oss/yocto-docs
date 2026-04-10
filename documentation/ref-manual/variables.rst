@@ -5054,7 +5054,7 @@ system and gives an overview of their function and contents.
          configuration file. You cannot set the variable in a recipe file.
 
       See the
-      :yocto_git:`local.conf.sample.extended </meta-yocto/tree/meta-poky/conf/templates/default/local.conf.sample.extended>`
+      :oecore_path:`local.conf.sample.extended <meta/conf/templates/default/local.conf.sample.extended>`
       file for additional information. Also, for information on creating an
       :term:`Initramfs`, see the ":ref:`dev-manual/building:building an initial ram filesystem (Initramfs) image`" section
       in the Yocto Project Development Tasks Manual.
