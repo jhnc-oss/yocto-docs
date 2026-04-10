@@ -165,6 +165,19 @@ The following :term:`DISTRO_FEATURES` are now enabled by default in
 
 See commit :oecore_rev:`2e1e7c86064ce36580953650b27cca9ae7c269c4` for more information.
 
+Default configuration templates removed from :yocto_git:`meta-poky </meta-yocto/tree/meta-poky>`
+------------------------------------------------------------------------------------------------
+
+The configuration templates located in ``meta-poky/conf/templates/default`` have
+been removed as they are now provided in a single location:
+:term:`OpenEmbedded-Core (OE-Core)` :oecore_path:`meta/conf/templates/default`.
+
+These files were duplicating themselves but were mostly similar.
+
+See commit :meta_yocto_rev:`ac300baea7314ea3c80f2330b2a993f729f32150` for more
+information on the differences there are between the two sets of default
+templates.
+
 :ref:`ref-classes-native` and :ref:`ref-classes-cross` classes :term:`DEBUG_BUILD` change
 -----------------------------------------------------------------------------------------
 
@@ -240,6 +253,38 @@ class, meaning recipes using these variables that not yet inheriting the
 
 See commit :oecore_rev:`68d2d38483efada7bc2409e10508b03a7431caff` for more information.
 
+:ref:`ref-classes-vex` output JSON document extension change
+------------------------------------------------------------
+
+Image recipes that inherit the :ref:`ref-classes-vex` class have an extra JSON
+document generated which was previous ending with the ``.json`` suffix. For
+example, a build for the ``core-image-minimal`` image recipe with this class
+would have resulted in a file named::
+
+   core-image-minimal-qemuarm64.rootfs.json
+
+The suffix of this file is now ``.vex.json``. Taking the above example, the same
+file is now named::
+
+   core-image-minimal-qemuarm64.rootfs.vex.json
+
+Support for SPDX 2.2 removed
+----------------------------
+
+Support for generating SPDX 2.2 document through the ``create-spdx-2.2`` class
+was removed:
+
+.. code-block::
+
+   Removes SPDX 2.2 support in favor of SPDX 3 support being the only
+   option. The SPDX 3 data is far superior to SPDX 2.2 and thus more useful
+   for SBoM uses cases.
+
+See commit :oecore_rev:`12abd0574c267bade0962ecb39d9e8da8c56842b` for more
+information.
+
+Users are advised to transition to SDPX 3.0, which is provided by the
+:ref:`ref-classes-create-spdx` class.
 
 .. _ref-migration-6-0-wic-sector-size-change:
 
@@ -269,6 +314,39 @@ Should be replaced by::
 
 See commit :oecore_rev:`b50d6debf7baa555fbfb3521c4f952675bba2d37` for more
 information.
+
+:doc:`WIC </dev-manual/wic>` files to be moved under ``files/wic``
+------------------------------------------------------------------
+
+:doc:`WIC </dev-manual/wic>` related files such as :doc:`WKS
+</ref-manual/kickstart>` files or custom WIC plugins should be moved to the
+``files/wic/`` directory of the layer containing them.
+
+If not done, the build will fail with errors indicating how to move these files,
+for example::
+
+   wic/wks files at ../meta-custom/wic need to be moved to files/wic within the layer to be found/used
+   wic/wks files at ../meta-custom/scripts/lib/wic/canned-wks need to be moved to files/wic within the layer to be found/used
+
+For example, here is the content of the :term:`OpenEmbedded-Core (OE-Core)`
+"meta" layer as of writing::
+
+   meta/files/wic
+   ├── common.wks.inc
+   ├── directdisk-bootloader-config.cfg
+   ├── directdisk-bootloader-config.wks
+   ├── directdisk-gpt.wks
+   ├── directdisk-multi-rootfs.wks
+   ├── directdisk.wks
+   ├── efi-bootdisk.wks.in
+   ├── efi-uki-bootdisk.wks.in
+   ├── mkefidisk.wks
+   ├── mkhybridiso.wks
+   ├── qemuloongarch.wks
+   ├── qemuriscv.wks
+   ├── qemux86-directdisk.wks
+   ├── sdimage-bootpart.wks
+   └── systemd-bootdisk.wks
 
 Rust language changes
 ---------------------
@@ -314,6 +392,18 @@ The following recipes have been removed in this release:
 -  ``systemd-compat-units``: Dropped as a consequence of removing
    :wikipedia:`SysVinit <UNIX_System_V>` support in :wikipedia:`systemd
    <Systemd>`
+   (:oecore_rev:`d9ec9e20eebc062d084dd76b59d665994e0cb51b`)
+
+-  ``gstreamer1.0-vaapi``: removed as it was already provided by the ``va``
+   :term:`PACKAGECONFIG` item of ``gstreamer1.0-plugins-bad``.
+   (:oecore_rev:`9e2d2a5b0c9e062f13651093bb1e459f210618e6`)
+
+-  ``pkgconfig``: replaced by the ``pkgconf`` recipe
+   (:oecore_rev:`e32bf38fab8b2ae417022a4dbd36f7e1ce52c206`)
+
+-  ``python3-pyzstd``: there were no users of this in :term:`OpenEmbedded-Core
+   (OE-Core)` and Python 3.14 now has built-in support for zstd
+   (:oecore_rev:`55061de857657ea01babc5652caa062e8d292c44`)
 
 Removed :term:`PACKAGECONFIG` options
 -------------------------------------
@@ -321,6 +411,8 @@ Removed :term:`PACKAGECONFIG` options
 -  ``mesa``: ``freedreno-fdperf`` (:oecore_rev:`293edd0d3d077d0fde7ba6671dc9a26d5b4cf5e4`)
 -  ``libcxx``: ``no-atomics`` (:oecore_rev:`ccc585f94c51ebaef863f116bcd2b41b2d958666`)
 -  ``systemd``: ``sysvinit`` (:oecore_rev:`e00d5d6eac65e2cd88e34c2790469c7325bfb37d`)
+-  ``gstreamer1.0-plugins-good``: ``soup2`` (:oecore_rev:`61d653562a5b3903aa4e79791b58a75e4dc74236`)
+-  ``webkitgtk``: ``soup2`` (:oecore_rev:`69af43387e809e595b992b3576dde89e700cc711`)
 
 Removed classes
 ---------------
@@ -340,3 +432,9 @@ Miscellaneous changes
 
 -  :ref:`ref-classes-meson`: drop ``meson_do_qa_configure`` as it was
    non-functional (:oecore_rev:`0514b451b5d96135c6d24e75e0afa8b5aea513dd`)
+
+-  Drop VSCode setup support from the ``oe-init-build-env`` script. Users are
+   advised to use :doc:`bitbake-setup
+   <bitbake:bitbake-user-manual/bitbake-user-manual-environment-setup>`
+   instead (:oecore_rev:`4e781c6618ae8ba1a3d2c1242a92017dbe44caaf`)
+
