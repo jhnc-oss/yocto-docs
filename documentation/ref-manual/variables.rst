@@ -9667,6 +9667,15 @@ system and gives an overview of their function and contents.
       specification) for a software Package. The default value of this variable
       is an empty string.
 
+   :term:`SPDX_PACKAGE_URLS`
+      A space separated list of Package URLs ("PURLs") for the software package.
+      The first item in this list will be listed as the ``packageUrl`` property
+      of the packages, and all PURLs (including the first one) will be listed as
+      external references. The default value is an auto generated ``pkg:yocto``
+      PURL based on the recipe name, version, and layer name. Override this
+      variable to replace the default, otherwise append or prepend to add
+      additional PURLs.
+
    :term:`SPDX_PACKAGE_VERSION`
       This variable controls the package version as seen in the SPDX 3.0 JSON
       output (``software_packageVersion``). The default value for this variable
