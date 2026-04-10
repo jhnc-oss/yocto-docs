@@ -5341,6 +5341,11 @@ system and gives an overview of their function and contents.
       :yocto_git:`symbol_why.py </yocto-kernel-tools/tree/tools/symbol_why.py>`
       script in :yocto_git:`yocto-kernel-tools </yocto-kernel-tools>`.
 
+   :term:`KCONFIG_CONFIG_ROOTDIR`
+      The :term:`KCONFIG_CONFIG_ROOTDIR` variable allows overriding the default
+      location of the ``.config`` file for recipes using the
+      :ref:`ref-classes-cml1` class.
+
    :term:`KCONFIG_MODE`
       When used with the :ref:`ref-classes-kernel-yocto`
       class, specifies the kernel configuration values to use for options

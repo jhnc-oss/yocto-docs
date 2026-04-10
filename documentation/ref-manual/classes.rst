@@ -476,6 +476,10 @@ build configuration system. "cml" stands for "Configuration Menu Language", whic
 originates from the Linux kernel but is also used in other projects such as U-Boot
 and BusyBox. It could have been called "kconfig" too.
 
+The CML configuration file location (``.config``) is by default expected to be
+in the build directory (:term:`B`). This can be overridden with the
+:term:`KCONFIG_CONFIG_ROOTDIR` variable.
+
 .. _ref-classes-compress_doc:
 
 ``compress_doc``
