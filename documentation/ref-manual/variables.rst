@@ -8750,6 +8750,44 @@ system and gives an overview of their function and contents.
       list, then the build system reports a warning that indicates the
       current host distribution has not been tested as a build host.
 
+   :term:`SBOM_CVE_CHECK_EXPORT_VARS`
+      When inheriting the :ref:`ref-classes-sbom-cve-check` class, this variable
+      holds the list of variables that declare export files to generate.
+
+      Each variable must have a ``type`` and an ``ext`` flag set:
+
+      -  The ``type`` flag contains the value that is passed to the
+         ``--export-type`` command line argument of ``sbom-cve-check``.
+
+      -  The ``ext`` flag contains the filename extension (suffix). The output
+         filename is going will be ``${IMAGE_NAME}${ext}``.
+
+      For example::
+
+         SBOM_CVE_CHECK_EXPORT_VARS = "SBOM_CVE_CHECK_EXPORT_SPDX3"
+         SBOM_CVE_CHECK_EXPORT_SPDX3[type] = "spdx3"
+         SBOM_CVE_CHECK_EXPORT_SPDX3[ext] = ".sbom-cve-check.spdx.json"
+
+   :term:`SBOM_CVE_CHECK_EXTRA_ARGS`
+      When inheriting the :ref:`ref-classes-sbom-cve-check` class, this variable
+      can be used to pass extra arguments to the ``sbom-cve-check`` command-line
+      tool.
+
+      See the `documentation <https://sbom-cve-check.readthedocs.io/en/latest/index.html>`__
+      of ``sbom-cve-check`` for more information.
+
+   :term:`SBOM_CVE_CHECK_SCAN_SCOPE`
+      When inheriting the :ref:`ref-classes-sbom-cve-check` class, this
+      variable controls whether to scan target and native, just target, or just
+      native recipes.
+
+      Valid values are:
+
+      -  ``target`` (default): recipes are scanned in their target context
+      -  ``native``: recipes are scanned in their :ref:`ref-classes-native` context
+      -  ``both``: recipes are scanned in both their target and
+         :ref:`ref-classes-native` context
+
    :term:`SDK_ARCH`
       The target architecture for the SDK. Typically, you do not directly
       set this variable. Instead, use :term:`SDKMACHINE`.

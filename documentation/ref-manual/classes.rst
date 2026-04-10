@@ -2760,6 +2760,61 @@ configuration checks from the ``local.conf`` configuration file to
 prevent common mistakes that cause build failures. Distribution policy
 usually determines whether to include this class.
 
+.. _ref-classes-sbom-cve-check:
+
+``sbom-cve-check``
+==================
+
+The :ref:`ref-classes-sbom-cve-check` class uses the `sbom-cve-check
+<github.com/bootlin/sbom-cve-check>`__ command-line tool for post-build CVE
+analysis. It relies on the :ref:`ref-classes-create-spdx` class as SPDX files
+are the input of this tool.
+
+This class should be enabled through the :ref:`ref-fragments-core-yocto-sbom-cve-check`
+fragment:
+
+.. code-block:: console
+
+   $ bitbake-config-build enable-fragment core/yocto/sbom-cve-check
+
+After building an image, ``sbom-cve-check`` will generate one or more reports in
+the :term:`DEPLOY_DIR_IMAGE` directory depending on the current value of
+:term:`SBOM_CVE_CHECK_EXPORT_VARS`.
+
+See the variables starting with ``SBOM_CVE_CHECK_`` in the :doc:`Yocto Project
+Reference Manual glossary </ref-manual/variables>` to learn more on how to
+configure the behavior of this class.
+
+.. _ref-classes-sbom-cve-check-recipe:
+
+``sbom-cve-check-recipe``
+=========================
+
+The :ref:`ref-classes-sbom-cve-check-recipe` class uses the `sbom-cve-check
+<github.com/bootlin/sbom-cve-check>`__ command-line tool for post-build CVE
+analysis of a recipe. It relies on the :ref:`ref-classes-create-spdx` class as
+SPDX files are the input of this tool.
+
+This class can be inherited in any recipe. Compared to the
+:class:`ref-classes-sbom-cve-check` class, this class only uses the SBOM of the
+recipe (after the ``create_recipe_sbom`` is run) to determine which is the
+underlying software and do the analysis, meaning that building the recipe itself
+isn't necessary.
+
+To use this class, inherit it in the recipe and run:
+
+.. code-block:: console
+
+   $ bitbake <recipe> -c sbom_cve_check_recipe
+
+After running the command, ``sbom-cve-check`` will generate one or more reports
+in the :term:`DEPLOY_DIR_IMAGE` directory depending on the current value of
+:term:`SBOM_CVE_CHECK_EXPORT_VARS`.
+
+See the variables starting with ``SBOM_CVE_CHECK_`` in the :doc:`Yocto Project
+Reference Manual glossary </ref-manual/variables>` to learn more on how to
+configure the behavior of this class.
+
 .. _ref-classes-scons:
 
 ``scons``
