@@ -1793,6 +1793,19 @@ includes one or more kernel modules and has its own means of building the module
 inherits this class as opposed to inheriting the :ref:`ref-classes-module`
 class.
 
+.. _ref-classes-module-rust:
+
+``module-rust``
+===============
+
+The :ref:`ref-classes-module-rust` class provides support for building
+out-of-tree Linux kernel modules written in the Rust programming language. The
+class inherits the :ref:`ref-classes-module` class.
+
+For general information on out-of-tree Linux kernel modules, see the
+":ref:`kernel-dev/common:incorporating out-of-tree modules`"
+section in the Yocto Project Linux Kernel Development Manual.
+
 .. _ref-classes-multilib*:
 
 ``multilib*``
