@@ -30,7 +30,7 @@ See also the list of new features and enhancements of the previous releases:
 Supported kernel versions
 -------------------------
 
-The :term:`OLDEST_KERNEL` setting is XXX in this release, meaning that
+The :term:`OLDEST_KERNEL` setting is 5.15 in this release, meaning that
 out the box, older kernels are not supported. See :ref:`4.3 migration notes
 <migration-4.3-supported-kernel-versions>` for details.
 
@@ -40,11 +40,16 @@ Supported distributions
 Compared to the previous releases, running BitBake is supported on new
 GNU/Linux distributions:
 
--  XXX
+-  Fedora 43
+-  openSUSE Leap 16.0
+-  Ubuntu 26.04 (LTS)
 
 On the other hand, some earlier distributions are no longer supported:
 
--  XXX
+-  Fedora 39
+-  Fedora 40
+-  Fedora 41
+-  openSUSE Leap 15.5
 
 See :ref:`all supported distributions <system-requirements-supported-distros>`.
 
@@ -348,14 +353,8 @@ For example, here is the content of the :term:`OpenEmbedded-Core (OE-Core)`
    ├── sdimage-bootpart.wks
    └── systemd-bootdisk.wks
 
-Rust language changes
----------------------
-
-systemd changes
----------------
-
 Support for SysVinit compatibility in systemd was dropped
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------------------------
 
 Support for the :wikipedia:`SysVinit <UNIX_System_V>` compatibility in
 :wikipedia:`systemd <Systemd>` was dropped.
@@ -370,14 +369,6 @@ This means that the ``systemd`` and ``sysvinit`` :term:`distro features
 Users are advised to switch to one init manager or the other entirely.
 
 See commit :oecore_rev:`d9ec9e20eebc062d084dd76b59d665994e0cb51b` for more information.
-
-Recipe changes
---------------
-
-Removed variables
------------------
-
-The following variables have been removed:
 
 Removed recipes
 ---------------
@@ -421,11 +412,6 @@ The following classes have been removed in this release:
 
 -  ``oelint``: remove as most of the checks done by this class are done in other
    areas of code now, making this class obsolete.
-
-Removed features
-----------------
-
-The following features have been removed in this release:
 
 Miscellaneous changes
 ---------------------
