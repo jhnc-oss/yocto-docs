@@ -1619,6 +1619,15 @@ The :ref:`ref-classes-kernel-uimage` class provides support to pack uImage.
 The :ref:`ref-classes-kernel-yocto` class provides common functionality for building
 from linux-yocto style kernel source repositories.
 
+.. _ref-classes-kernel-yocto-rust:
+
+``kernel-yocto-rust``
+=====================
+
+The :ref:`ref-classes-kernel-yocto-rust` class creates the necessary Rust
+Linux kernel dependencies and ensures that they are available by running ``make
+rustavailable`` from the Linux kernel source tree.
+
 .. _ref-classes-kernelsrc:
 
 ``kernelsrc``
