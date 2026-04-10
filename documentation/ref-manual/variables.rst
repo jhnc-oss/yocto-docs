@@ -9332,56 +9332,6 @@ system and gives an overview of their function and contents.
 
             SOURCE_MIRROR_URL = "http://example.com/my_source_mirror;user=<user>;pswd=<password>"
 
-   :term:`SPDX_ARCHIVE_PACKAGED`
-      This option allows to add to :term:`SPDX` output compressed archives
-      of the files in the generated target packages.
-
-      Such archives are available in
-      ``tmp/deploy/spdx/MACHINE/packages/packagename.tar.zst``
-      under the :term:`Build Directory`.
-
-      Enable this option as follows::
-
-         SPDX_ARCHIVE_PACKAGED = "1"
-
-      According to our tests on release 4.1 "langdale", building
-      ``core-image-minimal`` for the ``qemux86-64`` machine, enabling this
-      option multiplied the size of the ``tmp/deploy/spdx`` directory by a
-      factor of 13 (+1.6 GiB for this image), compared to just using the
-      :ref:`ref-classes-create-spdx` class with no option.
-
-      Note that this option doesn't increase the size of :term:`SPDX`
-      files in ``tmp/deploy/images/MACHINE``.
-
-   :term:`SPDX_ARCHIVE_SOURCES`
-      This option allows to add to :term:`SPDX` output compressed archives
-      of the sources for packages installed on the target. It currently
-      only works when :term:`SPDX_INCLUDE_SOURCES` is set.
-
-      This is one way of fulfilling "source code access" license
-      requirements.
-
-      Such source archives are available in
-      ``tmp/deploy/spdx/MACHINE/recipes/recipe-packagename.tar.zst``
-      under the :term:`Build Directory`.
-
-      Enable this option as follows::
-
-         SPDX_INCLUDE_SOURCES = "1"
-         SPDX_ARCHIVE_SOURCES = "1"
-
-      According to our tests on release 4.1 "langdale", building
-      ``core-image-minimal`` for the ``qemux86-64`` machine, enabling
-      these options multiplied the size of the ``tmp/deploy/spdx``
-      directory by a factor of 11 (+1.4 GiB for this image),
-      compared to just using the :ref:`ref-classes-create-spdx`
-      class with no option.
-
-      Note that using this option only marginally increases the size
-      of the :term:`SPDX` output in ``tmp/deploy/images/MACHINE/``
-      (+ 0.07\% with the tested image), compared to just enabling
-      :term:`SPDX_INCLUDE_SOURCES`.
-
    :term:`SPDX_BUILD_HOST`
       The base variable name describing the build host on which the build is
       running. The value must name a key from ``SPDX_IMPORTS``, allowing
