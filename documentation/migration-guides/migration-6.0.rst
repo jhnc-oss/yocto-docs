@@ -89,6 +89,57 @@ Reverting to :wikipedia:`SysVinit <UNIX_System_V>` can be done by specifying the
 
 See commit :oecore_rev:`0b4061c5d50261f826d0edb4b478d2d305274b7c` for more information.
 
+Changes in how default :term:`DISTRO_FEATURES` and :term:`MACHINE_FEATURES` are provided
+----------------------------------------------------------------------------------------
+
+The way default :term:`DISTRO_FEATURES` and :term:`MACHINE_FEATURES` are
+provided by the :term:`OpenEmbedded Build System` has changed.
+
+The ``DISTRO_FEATURES_BACKFILL``, ``DISTRO_FEATURES_BACKFILL_CONSIDERED``,
+``DISTRO_FEATURES_DEFAULT``, ``MACHINE_FEATURES_BACKFILL`` and
+``MACHINE_FEATURES_BACKFILL_CONSIDERED`` variables are now obsolete.
+
+Instead, these are replaced by the :term:`DISTRO_FEATURES_DEFAULTS`,
+:term:`DISTRO_FEATURES_OPTED_OUT`, :term:`MACHINE_FEATURES_DEFAULTS` and
+:term:`MACHINE_FEATURES_OPTED_OUT` variables.
+
+Users are advised to migrate to these variables the following way:
+
+-  For :term:`DISTRO_FEATURES`:
+
+   -  If you have previously assigned :term:`DISTRO_FEATURES` without using
+      ``DISTRO_FEATURES_DEFAULT``, you will now get the default features added
+      automatically (from :term:`DISTRO_FEATURES_DEFAULTS`). You will need to
+      review these and add any features you do not want to use to
+      :term:`DISTRO_FEATURES_OPTED_OUT`.
+
+   -  ``DISTRO_FEATURES_DEFAULT`` is now unused, the new variable name is
+      slightly different (:term:`DISTRO_FEATURES_DEFAULTS`) to ensure that it is
+      not accidentally used if a layer hasn't been modified to adapt to the new
+      naming.
+
+   -  If you previously set ``DISTRO_FEATURES_BACKFILL_CONSIDERED``, use the new
+      :term:`DISTRO_FEATURES_OPTED_OUT` variable instead.
+
+   -  If you previously modified ``DISTRO_FEATURES_BACKFILL``, remove these
+      assignments and follow the above instructions.
+
+-  For :term:`MACHINE_FEATURES`:
+
+   -  :term:`MACHINE_FEATURES` will now get the default features added
+      automatically (from :term:`MACHINE_FEATURES_DEFAULTS`). You will need to
+      review these and add any features you do not want to use to
+      :term:`MACHINE_FEATURES_OPTED_OUT`.
+
+   -  If you previously set ``MACHINE_FEATURES_BACKFILL_CONSIDERED``, use the new
+      :term:`MACHINE_FEATURES_OPTED_OUT` variable instead.
+
+   -  If you previously modified ``MACHINE_FEATURES_BACKFILL``, remove these
+      assignments and follow the above instructions.
+
+See commit :oecore_rev:`159148f4de2595556fef6e8678578df83383857b` and
+:oecore_rev:`3194d6868dd14e40ae670db089e5bf6f862d3044` for more information.
+
 Changes to the list of :term:`DISTRO_FEATURES` enabled by default
 -----------------------------------------------------------------
 

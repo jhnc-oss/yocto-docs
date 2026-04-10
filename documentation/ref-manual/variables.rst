@@ -2485,41 +2485,13 @@ system and gives an overview of their function and contents.
       list of features that ships with the Yocto Project and that you can
       provide with this variable, see the ":ref:`ref-features-distro`" section.
 
-   :term:`DISTRO_FEATURES_BACKFILL`
-      A space-separated list of features to be added to :term:`DISTRO_FEATURES`
-      if not also present in :term:`DISTRO_FEATURES_BACKFILL_CONSIDERED`.
+   :term:`DISTRO_FEATURES_DEFAULTS`
+      Specifies a space-separated list of default distro features provided by
+      the :term:`OpenEmbedded Build System`. This list should not be modified
+      directly, but instead :term:`DISTRO_FEATURES_OPTED_OUT` should be used to
+      prevent default distro features from being enabled.
 
-      This variable is set in the ``meta/conf/bitbake.conf`` file. It is
-      not intended to be user-configurable. It is best to just reference
-      the variable to see which distro features are being
-      :ref:`backfilled <ref-features-backfill>` for all distro configurations.
-
-   :term:`DISTRO_FEATURES_BACKFILL_CONSIDERED`
-      A space-separated list of features from :term:`DISTRO_FEATURES_BACKFILL`
-      that should not be :ref:`backfilled <ref-features-backfill>` (i.e. added
-      to :term:`DISTRO_FEATURES`) during the build.
-
-      This corresponds to an opt-out mechanism. When new default distro
-      features are introduced, distribution maintainers can review (`consider`)
-      them and decide to exclude them from the
-      :ref:`backfilled <ref-features-backfill>` features. Therefore, the
-      combination of :term:`DISTRO_FEATURES_BACKFILL` and
-      :term:`DISTRO_FEATURES_BACKFILL_CONSIDERED` makes it possible to
-      add new default features without breaking existing distributions.
-
-
-   :term:`DISTRO_FEATURES_DEFAULT`
-      A convenience variable that gives you the default list of distro
-      features with the exception of any features specific to the C library
-      (``libc``).
-
-      When creating a custom distribution, you might find it useful to be
-      able to reuse the default
-      :term:`DISTRO_FEATURES` options without the
-      need to write out the full set. Here is an example that uses
-      :term:`DISTRO_FEATURES_DEFAULT` from a custom distro configuration file::
-
-         DISTRO_FEATURES ?= "${DISTRO_FEATURES_DEFAULT} myfeature"
+      See :ref:`ref-manual/features:Default Features` for more information.
 
    :term:`DISTRO_FEATURES_FILTER_NATIVE`
       Specifies a list of features that if present in the target
@@ -2550,6 +2522,17 @@ system and gives an overview of their function and contents.
       :ref:`ref-classes-nativesdk` recipes. This variable is used
       in addition to the features filtered using the
       :term:`DISTRO_FEATURES_FILTER_NATIVESDK` variable.
+
+   :term:`DISTRO_FEATURES_OPTED_OUT`
+      Specifies a space-separated list of distro features to opt out from
+      when they are provided by the :term:`DISTRO_FEATURES_DEFAULTS` variable.
+
+      You can also opt out of all default features by setting
+      :term:`DISTRO_FEATURES_OPTED_OUT` to ``*``::
+
+         DISTRO_FEATURES_OPTED_OUT = "*"
+
+      See :ref:`ref-manual/features:Default Features` for more information.
 
    :term:`DISTRO_NAME`
       The long name of the distribution. For information on the short name
@@ -6254,28 +6237,24 @@ system and gives an overview of their function and contents.
       For a list of hardware features supported by the Yocto Project as
       shipped, see the ":ref:`ref-features-machine`" section.
 
-   :term:`MACHINE_FEATURES_BACKFILL`
-      A list of space-separated features to be added to
-      :term:`MACHINE_FEATURES` if not also present in
-      :term:`MACHINE_FEATURES_BACKFILL_CONSIDERED`.
+   :term:`MACHINE_FEATURES_DEFAULTS`
+      Specifies a space-separated list of default machine features provided by
+      the :term:`OpenEmbedded Build System`. This list should not be modified
+      directly, but instead :term:`MACHINE_FEATURES_OPTED_OUT` should be used to
+      prevent default machine features from being enabled.
 
-      This variable is set in the ``meta/conf/bitbake.conf`` file. It is not
-      intended to be user-configurable. It is best to just reference the
-      variable to see which machine features are being
-      :ref:`backfilled <ref-features-backfill>` for all machine configurations.
+      See :ref:`ref-manual/features:Default Features` for more information.
 
-   :term:`MACHINE_FEATURES_BACKFILL_CONSIDERED`
-      A list of space-separated features from :term:`MACHINE_FEATURES_BACKFILL`
-      that should not be :ref:`backfilled <ref-features-backfill>` (i.e. added
-      to :term:`MACHINE_FEATURES`) during the build.
+   :term:`MACHINE_FEATURES_OPTED_OUT`
+      Specifies a space-separated list of machine features to opt out from
+      when they are provided by the :term:`MACHINE_FEATURES_DEFAULTS` variable.
 
-      This corresponds to an opt-out mechanism. When new default machine
-      features are introduced, machine definition maintainers can review
-      (`consider`) them and decide to exclude them from the
-      :ref:`backfilled <ref-features-backfill>` features. Therefore, the
-      combination of :term:`MACHINE_FEATURES_BACKFILL` and
-      :term:`MACHINE_FEATURES_BACKFILL_CONSIDERED` makes it possible to
-      add new default features without breaking existing machine definitions.
+      You can also opt out of all default features by setting
+      :term:`MACHINE_FEATURES_OPTED_OUT` to ``*``::
+
+         MACHINE_FEATURES_OPTED_OUT = "*"
+
+      See :ref:`ref-manual/features:Default Features` for more information.
 
    :term:`MACHINEOVERRIDES`
       A colon-separated list of overrides that apply to the current

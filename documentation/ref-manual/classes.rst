@@ -1071,10 +1071,10 @@ introspection. This functionality is only enabled if the
 
 .. note::
 
-   This functionality is :ref:`backfilled <ref-features-backfill>` by default
-   and, if not applicable, should be disabled through
-   :term:`DISTRO_FEATURES_BACKFILL_CONSIDERED` or
-   :term:`MACHINE_FEATURES_BACKFILL_CONSIDERED`, respectively.
+   This functionality is :ref:`enabled <ref-manual/features:Default Features>`
+   by default and, if not applicable, should be disabled through
+   :term:`DISTRO_FEATURES_OPTED_OUT` or
+   :term:`MACHINE_FEATURES_OPTED_OUT`, respectively.
 
 .. _ref-classes-grub-efi:
 
