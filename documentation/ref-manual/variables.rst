@@ -12267,6 +12267,13 @@ system and gives an overview of their function and contents.
       Wic creation process.
 
    :term:`WIC_SECTOR_SIZE`
+
+      .. warning::
+
+         This variable is deprecated in favor of the ``--sector-size`` wic
+         command-line argument. See :ref:`ref-migration-6-0-wic-sector-size-change`
+         for more information.
+
       The variable :term:`WIC_SECTOR_SIZE` controls the sector size of Wic
       images. In the background, this controls the value of the
       ``PARTED_SECTOR_SIZE`` environment variable passed to the ``parted``
