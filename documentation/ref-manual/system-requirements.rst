@@ -203,13 +203,39 @@ documentation in PDF format:
 .. literalinclude:: ../tools/host_packages_scripts/fedora_docs_pdf.sh
    :language: shell
 
-openSUSE Packages
------------------
+openSUSE Leap Packages
+----------------------
+
+openSUSE Leap 15.6 Packages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here are the packages needed to build an image on a headless system
-with a supported openSUSE distribution:
+with a supported openSUSE Leap 15.6 distribution:
 
-.. literalinclude:: ../tools/host_packages_scripts/opensuse_essential.sh
+.. literalinclude:: ../tools/host_packages_scripts/opensuse_essential_15.6.sh
+   :language: shell
+
+Here are the packages needed to build Project documentation manuals:
+
+.. literalinclude:: ../tools/host_packages_scripts/opensuse_docs.sh
+   :language: shell
+
+.. literalinclude:: ../tools/host_packages_scripts/pip3_docs.sh
+   :language: shell
+
+In addition to the previous packages, here are the packages needed to build the
+documentation in PDF format:
+
+.. literalinclude:: ../tools/host_packages_scripts/opensuse_docs_pdf.sh
+   :language: shell
+
+openSUSE Leap 16.0 Packages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here are the packages needed to build an image on a headless system
+with a supported openSUSE Leap 16.0 distribution:
+
+.. literalinclude:: ../tools/host_packages_scripts/opensuse_essential_16.0.sh
    :language: shell
 
 Here are the packages needed to build Project documentation manuals:

@@ -126,7 +126,15 @@ main ()
     "leap:15.6"*)
       image=opensuse/leap:$version
       containerfile=Containerfile.zypper
-      essential=opensuse_essential.sh
+      essential=opensuse_essential_15.6.sh
+      docs=opensuse_docs.sh
+      docs_pdf=opensuse_docs_pdf.sh
+      pip3=pip3_docs.sh
+      ;;
+    "leap:16.0"*)
+      image=opensuse/leap:$version
+      containerfile=Containerfile.zypper
+      essential=opensuse_essential_16.0.sh
       docs=opensuse_docs.sh
       docs_pdf=opensuse_docs_pdf.sh
       pip3=pip3_docs.sh
