@@ -11905,6 +11905,11 @@ system and gives an overview of their function and contents.
       <https://www.freedesktop.org/software/systemd/man/latest/ukify.html>`__
       command.
 
+   :term:`UKI_DEVICETREE`
+      When inheriting the :ref:`ref-classes-uki` class, the :term:`UKI_DEVICETREE`
+      variable holds the list of device tree blobs to include to the `Unified
+      Kernel Image (UKI) <https://uapi-group.org/specifications/specs/unified_kernel_image/>`__.
+
    :term:`UKI_FILENAME`
       When inheriting the :ref:`ref-classes-uki` class, the output file name
       for the generated `Unified Kernel Image (UKI)
