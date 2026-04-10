@@ -237,12 +237,6 @@ metadata, as extra layers can define their own:
    main DNS name resolver in ``glibc`` Name Service Switch. This is a DNS
    resolver daemon from ``systemd``.
 
--  *usbgadget:* Include USB Gadget Device support (for USB
-   networking/serial/storage).
-
--  *usbhost:* Include USB Host support (allows to connect external
-   keyboard, mouse, storage, network etc).
-
 -  *usrmerge:* Merges the ``/bin``, ``/sbin``, ``/lib``, and ``/lib64``
    directories into their respective counterparts in the ``/usr``
    directory to provide better package and application compatibility.
