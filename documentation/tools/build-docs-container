@@ -40,7 +40,6 @@ $0 OCI_IMAGE [make arguments...]
      - debian:13
      - fedora:42
      - fedora:43
-     - leap:15.5
      - leap:15.6
      - rockylinux:8
      - rockylinux:9
@@ -124,7 +123,6 @@ main ()
       docs_pdf=fedora_docs_pdf.sh
       pip3=pip3_docs.sh
       ;;
-    "leap:15.5"*|\
     "leap:15.6"*)
       image=opensuse/leap:$version
       containerfile=Containerfile.zypper
