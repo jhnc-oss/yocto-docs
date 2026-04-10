@@ -60,26 +60,25 @@ supported on the following distributions:
 
 ..
    Can be generated with yocto-autobuilder-helper's scripts/yocto-supported-distros.
-   yocto-supported-distros --release master --config yocto-autobuilder2/config.py --output-format docs
+   yocto-supported-distros --release master --config yocto-autobuilder2/config.py --output-format docs --check-worker-statuses
 
 -  AlmaLinux 8
 -  AlmaLinux 9
 -  CentOS Stream 9
--  Debian GNU/Linux 11 (Bullseye)
--  Debian GNU/Linux 12 (Bookworm)
--  Debian GNU/Linux 13 (Trixie)
--  Fedora 39
--  Fedora 40
+-  Debian 11
+-  Debian 12
+-  Debian 13
 -  Fedora 42
 -  Fedora 43
--  OpenSUSE Leap 15.5
 -  OpenSUSE Leap 15.6
+-  OpenSUSE Leap 16.0
 -  Rocky Linux 8
 -  Rocky Linux 9
 -  Ubuntu 22.04 (LTS)
 -  Ubuntu 24.04 (LTS)
 -  Ubuntu 25.04
 -  Ubuntu 25.10
+-  Ubuntu 26.04 (LTS)
 
 The following distribution versions are still tested, even though the
 organizations publishing them no longer make updates publicly available:
