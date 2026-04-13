@@ -86,7 +86,9 @@ if releases_from_json:
     if not current_branch:
         sys.exit("Unable to find a current release! Exiting...")
 
-    activereleases = [current_branch] + ltsseries
+    # make the list of releases unique, there can be duplication when the
+    # current releases is also an LTS
+    activereleases = list(dict.fromkeys([current_branch] + ltsseries))
 
 # used by run-docs-builds to get the default page
 if len(sys.argv) > 1 and sys.argv[1] == "getlatest":
