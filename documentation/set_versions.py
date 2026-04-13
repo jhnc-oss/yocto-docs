@@ -70,14 +70,23 @@ if releases_from_json:
         release_series[codename] = release["series_version"]
         if release["status"] == "Active Development":
             devbranch = codename
-        if release["series"] == "current":
-            activereleases.append(codename)
         if "LTS until" in release["status"]:
             ltsseries.append(codename)
         if release["bitbake_version"]:
             bitbake_mapping[codename] = release["bitbake_version"]
 
-    activereleases.remove(devbranch)
+    # Find the first non-dev release, which should be displayed as the default
+    # page on the docs website.
+    current_branch = ""
+    for release in releases_from_json:
+        if release["status"] != "Active Development":
+            current_branch = release["release_codename"].lower()
+            break
+
+    if not current_branch:
+        sys.exit("Unable to find a current release! Exiting...")
+
+    activereleases = [current_branch] + ltsseries
 
 # used by run-docs-builds to get the default page
 if len(sys.argv) > 1 and sys.argv[1] == "getlatest":
