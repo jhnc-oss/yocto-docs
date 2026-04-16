@@ -1679,8 +1679,8 @@ system and gives an overview of their function and contents.
 
       .. note::
 
-         When :term:`COMPATIBLE_MACHINE` is set in a recipe inherits from
-         native, the recipe is always skipped. All native recipes must be
+         When :term:`COMPATIBLE_MACHINE` is set in a native recipe,
+         the recipe is always skipped. All native recipes must be
          entirely target independent and should not rely on :term:`MACHINE`.
 
    :term:`COMPLEMENTARY_GLOB`
