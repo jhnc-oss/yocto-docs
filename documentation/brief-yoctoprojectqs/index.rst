@@ -289,7 +289,7 @@ an entire Linux distribution, including the toolchain, from source.
 
     .. code-block:: console
 
-       $ bitbake-config-build enable-fragment root-login-with-empty-password
+       $ bitbake-config-build enable-fragment core/yocto/root-login-with-empty-password
 
     .. note::
 
