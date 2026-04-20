@@ -246,6 +246,11 @@ with a supported openSUSE Leap 15.6 distribution:
 .. literalinclude:: ../tools/host_packages_scripts/opensuse_essential_15.6.sh
    :language: shell
 
+Additionally, openSUSE Leap 15.6 requires a :term:`buildtools` tarball to be
+installed and set up, as this distribution provides a version of Python that is
+too old for :term:`BitBake`. Follow the :ref:`system-requirements-buildtools`
+section below for more information.
+
 Here are the packages needed to build Project documentation manuals:
 
 .. literalinclude:: ../tools/host_packages_scripts/opensuse_docs.sh
