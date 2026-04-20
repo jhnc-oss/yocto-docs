@@ -2056,6 +2056,10 @@ system and gives an overview of their function and contents.
 
          CVE_PRODUCT = "vendor:package"
 
+      Since Wrynose (6.0), special characters must not be escaped. For example,
+      the :term:`CVE_PRODUCT` variable for the ``webkitgtk`` recipe must no
+      longer be written as ``webkitgtk\+`` but rather ``webkitgtk+``.
+
    :term:`CVE_STATUS`
       The CVE ID which is patched or should be ignored. Here is
       an example from the :oe_layerindex:`Python3 recipe</layerindex/recipe/23823>`::
