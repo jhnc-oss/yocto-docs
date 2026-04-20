@@ -166,6 +166,37 @@ Ubuntu and Debian
 
 .. include:: ubuntu-debian-host-packages-nodocs.rst
 
+Additionally, on distributions other than Debian 11 and Ubuntu 22.04 (otherwise
+see note below), install the following package:
+
+.. code-block:: console
+
+   $ sudo apt-get install python3-websockets
+
+.. note::
+
+   On Debian 11 and Ubuntu 22.04, the minimum version for
+   ``python3-websockets`` is not satisfied by the host distribution. This
+   package is used for fetching pre-built :ref:`shared state
+   <overview-manual/concepts:shared state>` artifacts from upstream Yocto Project
+   servers (see :ref:`ref-fragments-core-yocto-sstate-mirror-cdn` for more
+   information).
+
+   In order to use this feature, you can get the correct version of
+   ``python3-websockets`` by either:
+
+   -  Using a :term:`buildtools` tarball by following the
+      :ref:`system-requirements-buildtools` section below.
+
+   -  Installing ``python3-websockets`` using `Pip
+      <https://pip.pypa.io/en/stable/>`__ in a virtual environment, e.g.:
+
+      .. code-block:: console
+
+         $ python3 -m venv --clear ./yocto-docs-venv
+         $ . ./yocto-docs-venv/bin/activate
+         $ pip install websockets
+
 Here are the packages needed to build Project documentation manuals:
 
 .. literalinclude:: ../tools/host_packages_scripts/ubuntu_docs.sh
