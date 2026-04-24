@@ -237,8 +237,6 @@ New Features / Enhancements in |yocto-ver|
       in the default distro setup (appearing as ``nodistro`` :term:`DISTRO`)
       (:oecore_rev:`175fcf9fad699dd122680d3f6961af9bf8487046`)
 
--  Architecture-specific changes:
-
 -  QEMU / ``runqemu`` changes:
 
    -  ``qemuboot```: Make the tap interface nameserver configurable through
@@ -289,6 +287,9 @@ New Features / Enhancements in |yocto-ver|
    -  Enable dynamic LLVM linking by default
       (:oecore_rev:`d0671c3dad87a063b3a41dd07cde89b5684e692c`)
 
+   -  Enable fully static linking when :term:`TCLIBC` is set to ``musl``
+      (:oecore_rev:`75409c60e9e63fdcbb9d4f54130052991362ec08`)
+
 -  Wic Image Creator changes:
 
    -  ``wic/engine``: Fix copying directories into wic image with ``ext*``
@@ -297,7 +298,13 @@ New Features / Enhancements in |yocto-ver|
    -  Re-implement sector-size support
       (:oecore_rev:`b50d6debf7baa555fbfb3521c4f952675bba2d37`)
 
--  SDK-related changes:
+   -  The Wic tool is now maintained in a separate project, no longer part of
+      :term:`OpenEmbedded-Core (OE-Core)`: :yocto_git:`/wic/`
+
+   -  A new ``wicenv`` type can be added to :term:`IMAGE_FSTYPES` to place the
+      ``.env`` file generate by Wic in the deployment directory
+      (:term:`DEPLOY_DIR_IMAGE`)
+      (:oecore_rev:`e4d49702f21fb75444d58f419432649a04e351c9`)
 
 -  Testing-related changes:
 
@@ -374,6 +381,9 @@ New Features / Enhancements in |yocto-ver|
       -  Update data if CVE exists (:oecore_rev:`9ea6d9209b95f8d31975d71315fb52343e6aa729`)
       -  Validate that cve details field exists (:oecore_rev:`80ff4903ea1b839f9cd9393b314c3adfbb80b765`)
 
+   -  ``oe-pkgdata-util``: improve the ``lookup-pkg`` error message for
+      :term:`RPROVIDES` packages
+      (:oecore_rev:`46ff3a8d2c18fcba87c711bb23dbdabae20eef84`)
 
 -  BitBake changes:
 
@@ -463,7 +473,9 @@ New Features / Enhancements in |yocto-ver|
       configuration options when fetching Git repositories
       (:bitbake_rev:`4c378445969853d6aff4694d937b9af47c7f7300`)
 
--  Packaging changes:
+   -  When using the ``subpath`` parameter with the Git fetcher in an
+      :term:`SRC_URI`, properly make the ``HEAD`` point to the value specified
+      in :term:`SRCREV`.
 
 -  Clang/LLVM related changes:
 
@@ -516,7 +528,6 @@ New Features / Enhancements in |yocto-ver|
       The inclusion of VEX statements in SPDX documents can be controlled with the
       :term:`SPDX_INCLUDE_VEX` variable
       (:oecore_rev:`d999ac407c86b462134008818d5863ecb577f3c6`)
-
 
 -  ``devtool`` changes:
 
@@ -580,6 +591,7 @@ New Features / Enhancements in |yocto-ver|
 -  New :term:`PACKAGECONFIG` options for individual recipes:
 
    -  ``curl``: ``schannel``
+   -  ``gstreamer1.0-plugins-bad``: ``fdkaac``
    -  ``gstreamer1.0-plugins-good``: ``qt6``
    -  ``libinput``: ``lua``, ``libwacom``, ``mtdev``
    -  ``librepo``: ``sequoia``
@@ -590,6 +602,8 @@ New Features / Enhancements in |yocto-ver|
    -  ``python3``: ``freethreading`` (experimental, see
       :oecore_rev:`c56990178b31b893fbf695eaf6b67de501e9d2e9`)
    -  ``python3-cryptography``: ``legacy-openssl``
+   -  ``systemd``: ``osc-context``
+   -  ``systemtap``: ``readline``
 
 -  systemd related changes:
 
@@ -732,6 +746,13 @@ New Features / Enhancements in |yocto-ver|
 
    -  :ref:`ref-classes-archiver`: Don't try to preserve all attributes when
       copying files (:oecore_rev:`6e8313688fa994c82e4c846993ed8da0d1f4db0e`)
+
+   -  :ref:`ref-classes-useradd`: allow inheriting the class with only
+      :term:`USERADD_DEPENDS` set, when a recipe only depends on users/groups
+      created by another (:oecore_rev:`09a901b9874f76e665fb4ba9e537703a792011e3`)
+
+   -  ``vim``: disable `GTK+3` UI by default
+      (:oecore_rev:`a07763f03d4faacca4470e4f1f80f766ed068296`)
 
 Known Issues in |yocto-ver|
 ---------------------------
