@@ -739,6 +739,10 @@ New Features / Enhancements in |yocto-ver|
 Known Issues in |yocto-ver|
 ---------------------------
 
+-  A known bug is affecting :term:`build hosts <Build Host>` that have Intel
+   Ultra 7 CPUs and breaks :term:`OpenEmbedded-Core (OE-Core)` tests that
+   involve KVM. See bug :yocto_bug:`16074` for more information.
+
 Recipe License changes in |yocto-ver|
 -------------------------------------
 
