@@ -489,6 +489,9 @@ The following recipes have been removed in this release:
    ``cve-check`` class removal as it was the only user of these recipes.
    (:oecore_rev:`00de455f8d3aeca880129d23e8cfb7e246404699`)
 
+-  ``python3-roman-numerals-py``: renamed to ``python3-roman-numerals``
+   (:oecore_rev:`faff756e829b852724ad706051d6a771071440cb`)
+
 Removed :term:`PACKAGECONFIG` options
 -------------------------------------
 
