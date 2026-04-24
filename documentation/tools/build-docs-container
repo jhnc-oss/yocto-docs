@@ -41,6 +41,7 @@ $0 OCI_IMAGE [make arguments...]
      - fedora:42
      - fedora:43
      - leap:15.6
+     - leap:16.0
      - rockylinux:8
      - rockylinux:9
      - ubuntu:22.04
