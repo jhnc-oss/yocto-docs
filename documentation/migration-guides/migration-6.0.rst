@@ -291,6 +291,20 @@ information.
 Users are advised to transition to SDPX 3.0, which is provided by the
 :ref:`ref-classes-create-spdx` class.
 
+:term:`CVE_PRODUCT` character escaping change
+---------------------------------------------
+
+The :term:`CVE_PRODUCT` variable, which specifies a name used to match the
+recipe name against the name in the upstream `NIST CVE database
+<https://nvd.nist.gov/>`__, used to require special characters to be escaped.
+
+This is no longer, the case. For example, the :term:`CVE_PRODUCT` variable for
+the ``webkitgtk`` recipe must no longer be written as ``webkitgtk\+`` but
+``webkitgtk+``.
+
+Users are advised to review their :term:`CVE_PRODUCT` assignments and remove any
+special character escaping.
+
 .. _ref-migration-6-0-wic-sector-size-change:
 
 :term:`WIC_SECTOR_SIZE` should be replaced by ``--sector-size``
