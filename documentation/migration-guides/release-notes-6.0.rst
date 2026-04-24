@@ -572,7 +572,7 @@ New Features / Enhancements in |yocto-ver|
       :doc:`/security-reference/index`. It is intended to document how to report
       vulnerabilities to the Yocto Project security team.
 
--  :ref:`ref-classes-cve-check`-related changes:
+-  :ref:`ref-classes-sbom-cve-check`-related changes:
 
    -  ``cve-update-nvd2-native``: Use maximum CVSS score when extracting it from
       multiple sources (:oecore_rev:`4f6192f3165de0bc2499e045607c7e7ffd878a4b`)

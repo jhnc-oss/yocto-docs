@@ -28,7 +28,7 @@ Vulnerability check at build time
 =================================
 
 To enable a check for CVE security vulnerabilities using
-:ref:`ref-classes-cve-check` in the specific image or target you are building,
+``cve-check`` in the specific image or target you are building,
 add the following setting to your configuration::
 
    INHERIT += "cve-check"
@@ -58,7 +58,7 @@ analysis, it has been deemed to ignore the issue as it for example affects
 the software component on a different operating system platform.
 
 By default, no NVD API key is used to retrieve data from the CVE database, which
-results in larger delays between NVD API requests. See the :term:`NVDCVE_API_KEY`
+results in larger delays between NVD API requests. See the ``NVDCVE_API_KEY``
 documentation on how to request and set a NVD API key.
 
 After a build with CVE check enabled, reports for each compiled source recipe will be
@@ -145,7 +145,7 @@ It is also possible to check the CVE status of individual packages as follows::
 Fixing CVE product name and version mappings
 ============================================
 
-By default, :ref:`ref-classes-cve-check` uses the recipe name :term:`BPN` as CVE
+By default, ``cve-check`` uses the recipe name :term:`BPN` as CVE
 product name when querying the CVE database. If this mapping contains false positives, e.g.
 some reported CVEs are not for the software component in question, or false negatives like
 some CVEs are not found to impact the recipe when they should, then the problems can be
@@ -288,7 +288,7 @@ the :term:`CVE_CHECK_SKIP_RECIPE` variable.
 Implementation details
 ======================
 
-Here's what the :ref:`ref-classes-cve-check` class does to find unpatched CVE IDs.
+Here's what the ``cve-check`` class does to find unpatched CVE IDs.
 
 First the code goes through each patch file provided by a recipe. If a valid CVE ID
 is found in the name of the file, the corresponding CVE is considered as patched.
@@ -389,7 +389,7 @@ Don't forget to update your kernel recipe with::
    include cve-exclusion_6.12.inc
 
 Then the CVE information will automatically be added in the
-:ref:`ref-classes-cve-check` or :ref:`ref-classes-vex` report.
+``cve-check`` or :ref:`ref-classes-vex` report.
 
 ``improve_kernel_cve_report.py``
 --------------------------------
@@ -402,7 +402,7 @@ CVEs by analyzing the files used to build the kernel. The script is decoupled fr
 the build and can be run outside of the :term:`BitBake` environment.
 
 The script uses the output from the :ref:`ref-classes-vex` or
-:ref:`ref-classes-cve-check` class as input, together with CVE information from
+``cve-check`` class as input, together with CVE information from
 the Linux kernel CNA to enrich the ``cve-summary.json`` file with updated CVE
 information.
 
