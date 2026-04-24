@@ -764,18 +764,40 @@ Known Issues in |yocto-ver|
 Recipe License changes in |yocto-ver|
 -------------------------------------
 
+..
+   Going through commits on OE-Core filtered by License-Update:
+   git log -U0 --patch --grep "License-Update:" yocto-5.3..origin/master
+
 The following changes have been made to the :term:`LICENSE` values set by recipes:
 
 .. list-table::
    :widths: 20 40 40
    :header-rows: 1
 
-   * - Recipe
+   * - Recipe(s)
      - Previous value
      - New value
-   * - ``recipe name``
-     - Previous value
-     - New value
+   * - ``libxcrypt-compat``, ``libxcrypt``
+     - ``LGPL-2.1-only``
+     - ``LGPL-2.1-only & 0BSD & BSD-3-Clause``
+   * - ``libpcre2``
+     - ``BSD-3-Clause``
+     - ``BSD-3-Clause & BSD-2-Clause & MIT``
+   * - ``libtest-fatal-perl``
+     - ``Artistic-1.0 | GPL-1.0-or-later``
+     - ``Artistic-1.0-Perl | GPL-1.0-or-later``
+   * - ``python3-cffi``
+     - ``MIT``
+     - ``MIT-0``
+   * - ``icu``
+     - ``ICU``
+     - ``ICU & MIT``
+   * - ``iso-code``
+     - ``LGPL-2.1-only``
+     - ``LGPL-2.1-or-later``
+   * - ``ruby``
+     - ``Ruby | BSD-2-Clause | BSD-3-Clause | GPL-2.0-only | ISC | MIT``
+     - ``Ruby | BSD-2-Clause | BSD-3-Clause | GPL-2.0-only | ISC | MIT | BSL-1.0 | Apache-2.0``
 
 Security Fixes in |yocto-ver|
 -----------------------------
