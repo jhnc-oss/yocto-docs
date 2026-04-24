@@ -234,7 +234,7 @@ the format::
 
    CVE: CVE-2022-3341
 
-It is also recommended to add the ``Upstream-Status:`` tag with a link
+It is also required to add the ``Upstream-Status:`` tag with a link
 to the original patch and sign-off by people working on the backport.
 If there are any modifications to the original patch, note them in
 the ``Comments:`` tag.
