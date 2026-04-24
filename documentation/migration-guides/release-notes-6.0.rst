@@ -2020,7 +2020,206 @@ The following recipes have been upgraded:
 Contributors to |yocto-ver|
 ---------------------------
 
+..
+   List obtained with the following shell snippet:
+
+      authors=""
+      for repo in openembedded-core yocto-docs bitbake meta-yocto; do
+         authors="${authors}\n$(git --no-pager -C $repo log --format="-  %an" yocto-5.3..origin/master)"
+      done
+      echo $authors | sort | uniq
+
+   Email addresses and duplicates removed.
+
 Thanks to the following people who contributed to this release:
+
+-  Adam Blank
+-  Adam Duskett
+-  Adarsh Jagadish Kamini
+-  Aditya Kurdunkar
+-  Adrian Freihofer
+-  Ahmad Fatoum
+-  Alejandro Hernandez Samaniego
+-  Aleksandar Nikolic
+-  Alexander Kanavin
+-  Alexander Sverdlin
+-  Alex Bradbury
+-  Alex Kiernan
+-  Amaury Couderc
+-  Andrej Kozemcak
+-  Anibal Limon
+-  Ankur Tyagi
+-  Antonin Godard
+-  Ashish Kumar Mishra
+-  Ashish Sharma
+-  BELHADJ SALEM Talel
+-  Benjamin Robin
+-  Bruce Ashfield
+-  Changqing Li
+-  Chen Qi
+-  Clement Faure
+-  Colin Pinnell McAllister
+-  Corentin Guillevic
+-  Daiane Angolini
+-  Daniel Dragomir
+-  Daniel Turull
+-  Dan McGregor
+-  Deepesh Varatharajan
+-  Dmitry Baryshkov
+-  Dragomir, Daniel
+-  El Mehdi YOUNES
+-  Enrico Jörns
+-  Ernst Persson
+-  Etienne Cordonnier
+-  Fabio Berton
+-  Fabio Estevam
+-  Favazza, Samuele
+-  Florian Schmaus
+-  Francesco Valla
+-  Franz Schnyder
+-  Germann, Bastian
+-  Guðni Már Gilbert
+-  Gyorgy Sarvari
+-  Haiqing Bai
+-  Harish Sadineni
+-  Hemanth Kumar M D
+-  Het Patel
+-  Hiago De Franco
+-  Himanshu Jadon
+-  hongxu
+-  Hongxu Jia
+-  Jaeyoon Jung
+-  Jan Luebbe
+-  Jan Vermaete
+-  Jason Schonberg
+-  Javier Tia
+-  Jiaying Song
+-  Jinfeng Wang
+-  João Marcos Costa
+-  Jörg Sommer
+-  Jose Quaresma
+-  Joshua Watt
+-  Kai Kang
+-  Kamel Bouhara
+-  Kavinaya S
+-  Ken Kurematsu
+-  Khai Dang
+-  Khalifa Rouis
+-  Khem Raj
+-  Koen Kooi
+-  Kory Maincent
+-  Kristiyan Chakarov
+-  Krupal Ka Patel
+-  Lee Chee Yang
+-  Leon Anavi
+-  Le Qi
+-  Liu Yiding
+-  Livin Sunny
+-  Liyin Zhang
+-  Logan Gallois
+-  Louis Rannou
+-  Lucas Stach
+-  Luka Krstic
+-  Mahesh Angadi
+-  Mark Hatle
+-  Mark-Pk Tsai
+-  Markus Volk
+-  mark.yang
+-  Martin Jansa
+-  Martin Schwan
+-  Mathieu Dubois-Briand
+-  Matt Madison
+-  Maxin B. John
+-  Maxin John
+-  Max Krummenacher
+-  Miaoqing Pan
+-  Michael Arndt
+-  Michael Halstead
+-  Michael Opdenacker
+-  Michal Sieron
+-  Mikko Rapeli
+-  Ming Liu
+-  Mingli Yu
+-  Miroslav Cernak
+-  Mohammad Rafi Shaik
+-  Mohammad Rahimi
+-  Moritz Haase
+-  Naftaly RALAMBOARIVONY
+-  Naman Jain
+-  Nikhil R
+-  Niko Mauno
+-  Nora Schiffer
+-  Osama Abdelkader
+-  Patrick Vogelaar
+-  Patrick Wicki
+-  Paul Barker
+-  Pavel Löbl
+-  Peter Bergin
+-  Peter de Ridder
+-  Peter Kjellerstedt
+-  Peter Marko
+-  Peter Tatrai
+-  Philip Lorenz
+-  Pierre-Loup GOSSE
+-  Piotr Buliński
+-  Pratik Farkase
+-  Quentin Schulz
+-  Randolph Sapp
+-  Randy MacLeod
+-  Ricardo Salveti
+-  Ricardo Simoes
+-  Ricardo Ungerer
+-  Richard Purdie
+-  Robert Joslyn
+-  Robert P. J. Day
+-  Robert Yang
+-  Rob Woolley
+-  Ross Burton
+-  Rouven Rastetter
+-  Ryan Eatmon
+-  Sam Povilus
+-  Samuli Piippo
+-  Sandeep Gundlupet Raju
+-  Scott Murray
+-  Shaik Moin
+-  Shotaro Uchida
+-  Stefano Babic
+-  Stefano Tondo
+-  Sunil Dora
+-  sven.kalmbach
+-  Swami
+-  Telukula Jeevan Kumar Sahu
+-  Theo GAIGE
+-  Thomas Perrot
+-  Tim Orling
+-  Tom Geelen
+-  Trevor Gamblin
+-  Trevor Woerner
+-  Ulrich Ölmann
+-  Uwe Kleine-König
+-  Veeresh Kadasani
+-  Victor Kamensky
+-  Vijay Anusuri
+-  Viswanath Kraleti
+-  Vivek Puar
+-  Vyacheslav Yurkov
+-  Wang Mingyu
+-  Weisser, Pascal
+-  Xiangyu Chen
+-  Yanis BINARD
+-  Yann Dirson
+-  Yannic Moog
+-  Yash Gupta
+-  Yash Shinde
+-  Yasir Al-Latifi
+-  Yiding Liu
+-  Yi Zhao
+-  Yoann Congal
+-  Yongxin Liu
+-  Zhangfei Gao
+-  Zhang Peng
+-  Zk47T
+-  Zoltán Böszörményi
 
 Repositories / Downloads for Yocto-|yocto-ver|
 ----------------------------------------------
