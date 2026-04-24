@@ -4680,6 +4680,7 @@ system and gives an overview of their function and contents.
       - wic.gz
       - wic.lzma
       - wic.zst
+      - wicenv
 
       For more information about these types of images, see
       ``meta/classes-recipe/image_types*.bbclass`` in :term:`OpenEmbedded-Core
