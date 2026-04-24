@@ -574,9 +574,6 @@ New Features / Enhancements in |yocto-ver|
 
 -  :ref:`ref-classes-sbom-cve-check`-related changes:
 
-   -  ``cve-update-nvd2-native``: Use maximum CVSS score when extracting it from
-      multiple sources (:oecore_rev:`4f6192f3165de0bc2499e045607c7e7ffd878a4b`)
-
    -  Escape special characters in CPE 2.3 strings
       (:oecore_rev:`9dd9c0038907340ba08ff4c8ee06a8748c1ac00a`)
 
