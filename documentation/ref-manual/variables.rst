@@ -2176,8 +2176,8 @@ system and gives an overview of their function and contents.
 
    :term:`DEBUG_OPTIMIZATION`
       The options to pass in :term:`TARGET_CFLAGS` and :term:`CFLAGS` when
-      compiling a system for debugging. This variable defaults to "-O
-      -fno-omit-frame-pointer ${DEBUG_FLAGS} -pipe".
+      compiling a system for debugging. This variable defaults to "-Og
+      ${DEBUG_LEVELFLAG}".
 
    :term:`DEBUG_PREFIX_MAP`
       Allows to set C compiler options, such as ``-fdebug-prefix-map``,
@@ -3799,8 +3799,8 @@ system and gives an overview of their function and contents.
 
    :term:`FULL_OPTIMIZATION`
       The options to pass in :term:`TARGET_CFLAGS` and :term:`CFLAGS` when
-      compiling an optimized system. This variable defaults to "-O2 -pipe
-      ${DEBUG_FLAGS}".
+      compiling an optimized system. This variable defaults to "-O2
+      ${DEBUG_LEVELFLAG}".
 
    :term:`GCCPIE`
       Enables Position Independent Executables (PIE) within the GNU C
