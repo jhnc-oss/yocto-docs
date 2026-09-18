@@ -742,6 +742,34 @@ Recipe License changes in |yocto-ver|
    Going through commits on OE-Core filtered by License-Update:
    git log -U0 --patch --grep "License-Update:" yocto-6.0..origin/master
 
+The following changes have been made to the :term:`LICENSE` values set by recipes:
+
+.. list-table::
+   :widths: 20 40 40
+   :header-rows: 1
+
+   * - Recipe(s)
+     - Previous value
+     - New value
+   * - ``erofs-utils``
+     - ``GPL-2.0-or-later``
+     - ``MIT AND (GPL-2.0-or-later OR MIT)``
+   * - ``git``
+     - ``GPL-2.0-only AND GPL-2.0-or-later AND BSD-3-Clause AND MIT AND BSL-1.0 AND LGPL-2.1-or-later``
+     - ``GPL-2.0-only AND GPL-2.0-or-later AND BSD-3-Clause AND MIT AND LGPL-2.1-or-later``
+   * - ``fmt``
+     - ``MIT``
+     - ``MIT-with-fmt-exception``
+   * - ``vulkan-headers``
+     - ``Apache-2.0 AND MIT``
+     - ``Apache-2.0 AND MIT AND (Apache-2.0 OR MIT)``
+   * - ``vulkan-validation-layers``
+     - ``Apache-2.0 AND BSL-1.0 AND MIT``
+     - ``Apache-2.0 AND BSL-1.0 AND MIT AND BSD-2-Clause AND (Apache-2.0 WITH LLVM-exception)``
+   * - ``lttng-tools``
+     - ``GPL-2.0-only AND LGPL-2.1-only``
+     - ``BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND CC0-1.0 AND CC-BY-SA-4.0 AND FSFAP AND GPL-2.0-only AND GPL-2.0-or-later AND GPL-2.0-or-later WITH Autoconf-exception-2.0 AND GPL-2.0-or-later WITH Autoconf-exception-macro AND LGPL-2.1-only AND LGPL-2.1-or-later AND MIT``
+
 Security Fixes in |yocto-ver|
 -----------------------------
 
