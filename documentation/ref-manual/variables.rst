@@ -8606,6 +8606,11 @@ system and gives an overview of their function and contents.
       :ref:`ref-classes-retain` class. Can be set to specific recipes to disable
       the class when the class was inherited globally with :term:`INHERIT`.
 
+   :term:`RETAIN_IGNORE_TASKS`
+      When inheriting the :ref:`ref-classes-retain` class, the
+      :term:`RETAIN_IGNORE_TASKS` variable can contain a list of tasks that
+      should *not* trigger retention.
+
    :term:`RETAIN_OUTDIR`
       When inheriting the :ref:`ref-classes-retain` class, this variable
       specifies the directory where to save the tarball of the work directory.
