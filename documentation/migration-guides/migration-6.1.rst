@@ -16,7 +16,7 @@ For a list of new features and enhancements, see the
 Supported kernel versions
 -------------------------
 
-The :term:`OLDEST_KERNEL` setting is XXX in this release, meaning that
+The :term:`OLDEST_KERNEL` setting is 5.15 in this release, meaning that
 out the box, older kernels are not supported. See :ref:`4.3 migration notes
 <migration-4.3-supported-kernel-versions>` for details.
 
@@ -26,11 +26,9 @@ Supported distributions
 Compared to the previous releases, running BitBake is supported on new
 GNU/Linux distributions:
 
--  XXX
-
-On the other hand, some earlier distributions are no longer supported:
-
--  XXX
+-  AlmaLinux 10
+-  Fedora 44
+-  Rocky Linux 10
 
 See :ref:`all supported distributions <system-requirements-supported-distros>`.
 
@@ -175,12 +173,36 @@ library in :term:`OpenEmbedded-Core (OE-Core)`:
 Removed recipes
 ---------------
 
--  ``libdazzle``, ``libhandy``: no longer a dependency of the ``epiphany`` recipe, moved to
+-  ``libdazzle``, ``libhandy``: No longer a dependency of the ``epiphany`` recipe, moved to
    `meta-gnome` (in `meta-openembedded`)
    (:oecore_rev:`32d91b67b71de89e0e7cc7525371aec123655908`)
 
--  ``libpcre``: obsolete project now replaced by ``libpcre2``
+-  ``libpcre``: Obsolete project now replaced by ``libpcre2``
    (:oecore_rev:`057cccd9576e1dd0f947fbfc390bc06b210f71cb`)
+
+-  ``libxfont``: Recipe is obsolete and successor libxfont2 is available,
+   nothing depends on it in :term:`OpenEmbedded-Core (OE-Core)` anymore
+   (:oecore_rev:`4666968b23eefe8290b75e60fc3f3a7b8328c193`)
+
+-  ``gptfdisk``: Remove recipe as there are no dependencies on this recipe in
+   :term:`OpenEmbedded-Core (OE-Core)` anymore
+   (:oecore_rev:`188d84bcc136e87d03736606fb8e49f35df47fae`)
+
+-  ``libclc``: Remove recipe as it was replaced by ``mesa-libclc``
+   (:oecore_rev:`5457c35142cc9b6d3fa537cc5ef56e90cce85c88`)
+
+-  ``makedepend``: Remove recipe as ``mesa`` no longer depends on ``makedepend``
+   (:oecore_rev:`7e696b1fa0862da801fbe6e41f8820e65d82cd7a`)
+
+-  ``python-six``: Moved to :oe_git:`meta-python
+   </meta-openembedded/tree/meta-python>`
+   (:oecore_rev:`372ee47516cf6abb2b9a2767df80094491690f97`)
+
+Removed variables
+-----------------
+
+-  ``SDK_TOOLCHAIN_LANGS``: Merged into :term:`SDK_FEATURES`
+   (:oecore_rev:`933981a21e58dffce6dd2b400f2690444320d7d7`)
 
 Removed :term:`PACKAGECONFIG` options
 -------------------------------------
@@ -188,8 +210,18 @@ Removed :term:`PACKAGECONFIG` options
 Removed classes
 ---------------
 
+-  ``linux-kernel-base.bbclass``: Was removed as its functionality was moved to
+   :ref:`ref-classes-kernel-arch`. Users of this class should now inherit
+   :ref:`ref-classes-kernel-arch` instead.
+
 Miscellaneous changes
 ---------------------
+
+-  :ref:`ref-classes-archiver`: ``srpm`` support for :term:`ARCHIVER_MODE` was
+   removed (:oecore_rev:`69ce7593e8ed2d82125ed44e3989731d9e9f6858`)
+
+-  ``systemd-systemctl-native``: Rename to ``systemd-tools-native``
+   (:oecore_rev:`ff985de4df46945a92ae4ca59e54c930b7640c9a`)
 
 .. _SPDX License Identifier: https://spdx.org/licenses/
 .. _SPDX License Exception: https://spdx.org/licenses/exceptions-index.html
