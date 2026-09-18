@@ -1520,6 +1520,12 @@ system and gives an overview of their function and contents.
       libraries are not installed, to replicate the behavior of the ``cargo
       install`` command.
 
+   :term:`CARGO_PROFILE`
+      When inheriting the :ref:`ref-classes-cargo` class, the
+      :term:`CARGO_PROFILE` variable allows selecting the profile to use when
+      building (``--profile`` option). By default this variable is automatically
+      set based on the value of :term:`DEBUG_BUILD`.
+
    :term:`CC`
       The minimal command and arguments used to run the C compiler.
 
