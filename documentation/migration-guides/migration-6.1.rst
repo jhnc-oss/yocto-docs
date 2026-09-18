@@ -145,6 +145,33 @@ valid values for these variables will be :term:`SPDX License Expression`.
    The :oecore_path:`scripts/contrib/convert-spdx-licenses.py` script can help
    converting :term:`LICENSE` expressions in :term:`layers <Layer>`.
 
+Class file functions moved to the ``oe`` library
+------------------------------------------------
+
+Many class file functions have been moved to :oecore_path:`oe <meta/lib/oe>`
+library in :term:`OpenEmbedded-Core (OE-Core)`:
+
+-  :ref:`ref-classes-kernel`:
+
+   -  The ``get_kernel*()`` functions are now ``oe.kernel.get*()``
+   -  The default kernel build ``make`` commands now set ``ARCH``
+   -  The ``valid_arches`` variable is no longer available to change ``ARCH``
+
+-  :ref:`ref-classes-kernel-arch` no longer exports or sets ``ARCH`` and
+   ``UBOOT_ARCH``, ``oe.kernel.map_kernel_arch(d)`` and
+   ``oe.kernel.map_uboot_arch(d)`` should be used instead
+
+-  :ref:`ref-classes-kernel`, :ref:`ref-classes-uboot-config`: ``ARCH`` and
+   ``UBOOT_ARCH`` are not exported into the environment in most cases
+
+-  Various :ref:`ref-classes-utils` class Python functions are now
+   ``oe.utils.XXX()`` (see :oecore_path:`meta/lib/oe/utils.py`)
+
+-  Most :ref:`ref-classes-sanity` class functions are now ``oe.sanity.XXX()``
+   (see :oecore_path:`meta/lib/oe/sanity.py`)
+
+-  ``lsb_distro_identifier`` is now always ``oe.lsb.distro_identifier()``
+
 Removed recipes
 ---------------
 
