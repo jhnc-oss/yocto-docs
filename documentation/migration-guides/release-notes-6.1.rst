@@ -20,7 +20,7 @@ New Features / Enhancements in |yocto-ver|
    recipe upgrades
 
 ..
-   Found in meta/classes-global/sanity.bbclass:check_sanity_everybuild
+   Found in meta/lib/oe/sanity.py:check_sanity_everybuild
 
 -  Minimum Python version required on the host: XXX.
 
