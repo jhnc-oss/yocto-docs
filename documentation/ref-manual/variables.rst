@@ -8992,6 +8992,16 @@ system and gives an overview of their function and contents.
          :term:`SSTATE_MIRRORS` is set in the SDK's configuration to enable the
          artifacts to be fetched as needed.
 
+   :term:`SDK_FEATURES`
+      The :term:`SDK_FEATURES` variable defines the list of features to include
+      in a :ref:`standard SDK <sdk-manual/using:Using the Standard SDK>` or
+      :ref:`extensible SDK <sdk-manual/extensible:Using the extensible SDK>`,
+      resolved when running the :ref:`ref-tasks-populate_sdk` or
+      :ref:`ref-tasks-populate_sdk_ext` task. This variable is analogous to
+      :term:`IMAGE_FEATURES`, but for the SDK instead of the image.
+
+      For a full list of features, see the :ref:`ref-features-sdk` section.
+
    :term:`SDK_HOST_MANIFEST`
       The manifest file for the host part of the SDK. This file lists all
       the installed packages that make up the host part of the SDK. The
