@@ -2194,6 +2194,18 @@ meson-python build system.
 
 Internally this uses the :ref:`ref-classes-python_pep517` class.
 
+.. _ref-classes-python_pbr:
+
+``python_pbr``
+==============
+
+The :ref:`ref-classes-python_pbr` class enables building Python projects which
+use the `Python Build Reasonableness <https://pypi.org/project/pbr/>`__ backend.
+
+This class adds ``python3-pbr-native`` to the recipe's build-time dependencies.
+
+Internally this uses the :ref:`ref-classes-python_pep517` class.
+
 .. _ref-classes-python_pdm:
 
 ``python_pdm``
