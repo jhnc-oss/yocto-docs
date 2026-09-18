@@ -3721,6 +3721,11 @@ system and gives an overview of their function and contents.
 
          mkimage *-B 8 -E* -f fit-image.its fitImage
 
+   :term:`FIT_OS`
+      The :term:`FIT_OS` variable controls the ``os`` field of the kernel and
+      various other images in the FIT image. Set to "efi" to load a kernel with
+      EFI stub as an EFI application. The default is "linux".
+
    :term:`FIT_PAD_ALG`
       Specifies the padding algorithm used in creating the FIT Image.
       The default value is set to "pkcs-1.5" by the
