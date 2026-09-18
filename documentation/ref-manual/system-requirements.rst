@@ -64,16 +64,20 @@ supported on the following distributions:
 
 -  AlmaLinux 8
 -  AlmaLinux 9
+-  AlmaLinux 10
 -  CentOS Stream 9
 -  CentOS Stream 10
 -  Debian 11
 -  Debian 12
 -  Debian 13
+-  Fedora 42
 -  Fedora 43
+-  Fedora 44
 -  openSUSE Leap 15.6
 -  openSUSE Leap 16.0
 -  Rocky Linux 8
 -  Rocky Linux 9
+-  Rocky Linux 10
 -  Ubuntu 22.04 (LTS)
 -  Ubuntu 24.04 (LTS)
 -  Ubuntu 25.04
@@ -88,10 +92,10 @@ organizations publishing them no longer make updates publicly available:
    (meaning there are running workers).
    See https://endoflife.date for information of EOL releases.
 
--  Fedora 39
--  Fedora 40
+-  Fedora 42
 -  openSUSE Leap 15.5
 -  Ubuntu 25.04
+-  Ubuntu 25.10
 
 Note that the Yocto Project doesn't have access to private updates
 that some of these versions may have. Therefore, our testing has
