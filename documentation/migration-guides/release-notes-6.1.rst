@@ -2012,5 +2012,228 @@ Contributors to |yocto-ver|
 
 Thanks to the following people who contributed to this release:
 
+-  Adam Blank
+-  Adam Duskett
+-  Adarsh Jagadish Kamini
+-  Aditya GS
+-  Adrian Freihofer
+-  Alejandro Hernandez Samaniego
+-  Alejandro Mery
+-  Alessandro Zini
+-  Alexander Kanavin
+-  Alexander Stein
+-  Alex Kiernan
+-  Amaury Couderc
+-  Anders Heimer
+-  Andreas Mützel
+-  Andrei Lalaev
+-  Andrej Valek
+-  Andrew Geissler
+-  Anis Bougrine
+-  Ankur Tyagi
+-  Anthony Squires
+-  Antoine Gouby
+-  Antonin Godard
+-  Anton Skorup
+-  Aravind Bandari
+-  AshishKumar Mishra
+-  Aswin Murugan
+-  Aurelien DESBRIERES
+-  Baban
+-  Babanpreet Singh
+-  Benjamin Robin
+-  Bin Cao
+-  Bruce Ashfield
+-  Changqing Li
+-  Chen Qi
+-  Chris Laplante
+-  Colin Pinnell McAllister
+-  Corentin Guillevic
+-  Daiane Angolini
+-  Daniel Dragomir
+-  Daniel McGregor
+-  Daniel Turull
+-  David Nyström
+-  David Reyna
+-  Dawid Bijak
+-  Deepesh Varatharajan
+-  Denys Dmytriyenko
+-  Devansh Patel
+-  Dmitry Baryshkov
+-  Dmitry Sakhonchik
+-  Efe Can Icoz
+-  Eilís 'pidge' Ní Fhlannagáin
+-  El Mehdi YOUNES
+-  Enoch Ng
+-  Enzo Frese
+-  Eric Meyers
+-  Ernest Van Hoecke
+-  Esa Jaaskela
+-  Etienne Cordonnier
+-  Fabian Pflug
+-  Fabien Lehoussel
+-  Fabio Estevam
+-  Florin Diaconescu
+-  Francesco Valla
+-  Francisco Pedraza
+-  Fredrik Svensson (svsvenss)
+-  Frieder Schrempf
+-  Gabriel Smith
+-  Gavvala, Kris
+-  George Refseth
+-  Ghanshyam Banait
+-  Guðni Már Gilbert
+-  Gustavo Henrique Nihei
+-  Haiqing Bai
+-  Haixiao Yan
+-  Hangtian Zhu
+-  Harald Brinkmann
+-  Harish Sadineni
+-  Hemanth Kumar M D
+-  Hetvi Thakar
+-  Hiago De Franco
+-  Himani Barde
+-  Himani Ramesh Barde
+-  Himanshu Jadon
+-  hongxu
+-  Igor Opaniuk
+-  Ivan Nestlerode
+-  jaekyu.lee
+-  Jaeyoon Jung
+-  Jaipaul Cheernam
+-  Jamin Lin
+-  Jan Vermaete
+-  Jate Sujjavanich
+-  Jesse Van Gavere
+-  Jinfeng Wang
+-  Jinwang Li
+-  Joao Marcos Costa
+-  João Marcos Costa
+-  Johan Anderholm
+-  John Ripple
+-  Jonas Juffinger
+-  Jörg Sommer
+-  Jose Quaresma
+-  Joshua Watt
+-  Juhandré Knoetze
+-  Junjie Cao
+-  Kanksha Paturi
+-  Karthik
+-  KAZUYOSHI AKIYAMA (秋山 和慶)
+-  Khem Raj
+-  Kris Gavvala
+-  Kyungjik Min
+-  Lee Chee Yang
+-  Leon Anavi
+-  Leonardo Costa
+-  Leonid Iziumtsev
+-  Levi Shafter
+-  Lian Wang
+-  Li Wang
+-  Li Zhou
+-  Luca Fancellu
+-  Marcio Henriques
+-  Marcus Flyckt
+-  Marek Vasut
+-  Mark Hatle
+-  Mark Jonas
+-  Markus Swarowsky
+-  Markus Volk
+-  mark.yang
+-  Marta Rybczynska
+-  Martin Jansa
+-  Mathieu Dubois-Briand
+-  Matt Madison
+-  Mengshi Wu
+-  Michael Halstead
+-  Michael Opdenacker
+-  Michael Tretter
+-  Michal Sieron
+-  Mikko Rapeli
+-  Mingli Yu
+-  Minwoo Choi
+-  Moritz Haase
+-  Nate Kent
+-  Nathaniel White
+-  Nick Owens
+-  Nico
+-  Nicolas Dechesne
+-  Niko Mauno
+-  Nora Schiffer
+-  Oleksiy Obitotskyy
+-  Omkar Patil
+-  Otavio Salvador
+-  Pascal Eberhard
+-  Paul Barker
+-  Paul Eggleton
+-  Peter Kjellerstedt
+-  Peter Marko
+-  Peter Tatrai
+-  Philip Lorenz
+-  Prabhudasu Vatala
+-  Pratik Farkase
+-  Quan Sun
+-  Quentin Schulz
+-  Rasmus Villemoes
+-  Ricardo Salveti
+-  Richard Purdie
+-  Robert P. J. Day
+-  Robert Yang
+-  Rob Woolley
+-  Roland Kovacs
+-  Ross Burton
+-  Rouven Czerwinski
+-  Rouven Rastetter
+-  Ryan Eatmon
+-  Sai Sneha
+-  Sam Kent
+-  Sandeep J
+-  Sebastian Muxel
+-  Sergio Prado
+-  sh0127.shin
+-  Shinu Chandran
+-  Siddharth Doshi
+-  Siva Balasubramanian
+-  Sudhir Dumbhare
+-  Sumanth Gavini
+-  Sundeep KOKKONDA
+-  Sunil Dora
+-  Tafil Avdyli
+-  Tan Siewert
+-  Taruntej Kanakamalla
+-  Tejas Kanfade
+-  Theo Gaige (Schneider Electric)
+-  Thomas Perrot
+-  Thorsten Schmelzer
+-  Thune Tran
+-  Tim Orling
+-  Trevor Gamblin
+-  Trevor Woerner
+-  T, Sai Sireesha
+-  Tushar Darote
+-  Ulrich Ölmann
+-  Vijay Anusuri
+-  Viswanath Kraleti
+-  Vivek Puar
+-  Vyacheslav Yurkov
+-  Walter Werner Schneider
+-  Wang Mingyu
+-  Wei Deng
+-  Wei Gao
+-  Wei Zhang
+-  Wenwen Fu
+-  Wes Malone
+-  WXbet
+-  Xiaozhan Li
+-  Xiuzhuo Shang
+-  Yann Dirson
+-  Yash Shinde
+-  Yoann Congal
+-  Yogesh Tyagi
+-  Zheng Ruoqin
+-  Zhixiong Chi
+-  Zk47T
+-  Zoltán Böszörményi
+
 Repositories / Downloads for Yocto-|yocto-ver|
 ----------------------------------------------
