@@ -1316,8 +1316,7 @@ information on how to build an :term:`Initramfs`, see the
 the Yocto Project Development Tasks Manual.
 
 Various other classes are used by the :ref:`ref-classes-kernel` and :ref:`ref-classes-module` classes
-internally including the :ref:`ref-classes-kernel-arch`, :ref:`ref-classes-module-base`, and
-:ref:`ref-classes-linux-kernel-base` classes.
+internally including the :ref:`ref-classes-kernel-arch` and :ref:`ref-classes-module-base` classes.
 
 .. _ref-classes-kernel-arch:
 
@@ -1596,16 +1595,6 @@ The :ref:`ref-classes-libc*` classes support recipes that build packages with ``
 The :ref:`ref-classes-license` class provides license manifest creation and license
 exclusion. This class is enabled by default using the default value for
 the :term:`INHERIT_DISTRO` variable.
-
-.. _ref-classes-linux-kernel-base:
-
-``linux-kernel-base``
-=====================
-
-The :ref:`ref-classes-linux-kernel-base` class provides common functionality for
-recipes that build out of the Linux kernel source tree. These builds
-goes beyond the kernel itself. For example, the Perf recipe also
-inherits this class.
 
 .. _ref-classes-linuxloader:
 
