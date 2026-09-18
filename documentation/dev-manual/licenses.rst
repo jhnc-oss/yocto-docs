@@ -355,9 +355,7 @@ accidental release of proprietary software. The Yocto Project provides
 an :ref:`ref-classes-archiver` class to help avoid some of these concerns.
 
 Before you employ :term:`DL_DIR` or the :ref:`ref-classes-archiver` class, you
-need to decide how you choose to provide source. The source
-:ref:`ref-classes-archiver` class can generate tarballs and SRPMs and can
-create them with various levels of compliance in mind.
+need to decide how you choose to provide source.
 
 One way of doing this (but certainly not the only way) is to release
 just the source as a tarball. You can do this by adding the following to
