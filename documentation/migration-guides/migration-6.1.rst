@@ -140,6 +140,11 @@ automatically converted to a :term:`SPDX License Expression`, but a warning is
 issued when this occurs. This support will eventually be removed and the only
 valid values for these variables will be :term:`SPDX License Expression`.
 
+.. tip::
+
+   The :oecore_path:`scripts/contrib/convert-spdx-licenses.py` script can help
+   converting :term:`LICENSE` expressions in :term:`layers <Layer>`.
+
 Removed recipes
 ---------------
 
