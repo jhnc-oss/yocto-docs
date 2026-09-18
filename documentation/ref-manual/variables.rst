@@ -5758,6 +5758,11 @@ system and gives an overview of their function and contents.
       Allows to specific which ``strip`` command to use to strip the kernel
       binary, typically either GNU binutils ``strip`` or ``llvm-strip``.
 
+   :term:`KERNEL_TOOLCHAIN`
+      The :term:`KERNEL_TOOLCHAIN` variable allows specifying the toolchain to
+      use to build the Linux kernel. Its value can be one of the values
+      supported by the :term:`PREFERRED_TOOLCHAIN_TARGET` variable.
+
    :term:`KERNEL_VERSION`
       Specifies the version of the kernel as extracted from ``version.h``
       or ``utsrelease.h`` within the kernel sources. Effects of setting
