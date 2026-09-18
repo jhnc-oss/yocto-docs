@@ -5703,6 +5703,11 @@ system and gives an overview of their function and contents.
       For information on how to populate the ``modname.conf`` file with
       ``modprobe.d`` syntax lines, see the :term:`KERNEL_MODULE_PROBECONF` variable.
 
+   :term:`KERNEL_MODULE_INSTALL_PREFIX`
+      When inheriting the :ref:`ref-classes-module` class, the
+      :term:`KERNEL_MODULE_INSTALL_PREFIX` variable specifies the directory in
+      which kernel modules are installed on target.
+
    :term:`KERNEL_MODULE_PROBECONF`
       Provides a list of modules for which the OpenEmbedded build system
       expects to find ``module_conf_``\ modname values that specify
