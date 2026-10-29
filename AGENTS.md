@@ -10,6 +10,11 @@ Guidance for AI agents working in the `yocto-docs` repository.
   PR conventions apply.
 - One Git commit per logical change (e.g., one commit per variable / family of
   variable documentation, or class documentation).
+- The standards described in `documentation/standards.md` should be followed as
+  much as possible when making changes.
+- The formatting conventions in `documentation/conventions.rst` should also be
+  followed when making changes. Those are user-facing conventions about how to
+  read and interpret the documentation.
 - Commit message format:
   - Summary line prefixed with either:
     - the rST file path *without* the "documentation/"
