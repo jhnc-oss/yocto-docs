@@ -233,7 +233,7 @@ section.
    .. note::
 
       Alternatively, you can source the ``init-build-env`` file provided by
-      :doc:`bitbake-setup <bitbake:bitbake-user-manual/bitbake-user-manual-environment-setup>` 
+      :doc:`bitbake-setup <bitbake:bitbake-user-manual/bitbake-user-manual-environment-setup>`
 
 Example Filesystem Layout
 =========================

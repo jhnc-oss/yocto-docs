@@ -131,7 +131,7 @@ Follow these general steps to create your layer without using tools:
          compatible with. For example: "&DISTRO_NAME_NO_CAP;".
 
          This variable is a good way to indicate if a particular layer is
-         current. 
+         current.
 
    -  A ``recipes-example`` subdirectory that itself contains a
       subdirectory named ``example``, which contains an ``example.bb``
