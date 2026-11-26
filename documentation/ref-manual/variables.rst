@@ -4825,6 +4825,18 @@ system and gives an overview of their function and contents.
       are no build time restrictions, but the license check is still
       performed when the image's filesystem is assembled from packages.
 
+      The license check is also performed by the
+      :ref:`ref-tasks-populate_sdk` task, for both the host (e.g.
+      ``nativesdk-*`` and ``*-cross-canadian-*`` packages) and target
+      sysroots of the SDK. If the restrictions are only meant to apply to the
+      image and not to its SDK, the check can be disabled for the
+      :ref:`ref-tasks-populate_sdk` task with::
+
+         INCOMPATIBLE_LICENSE:task-populate-sdk = ""
+
+      Alternatively, individual packages can be allowed in the SDK with
+      :term:`INCOMPATIBLE_LICENSE_EXCEPTIONS`.
+
       There is some support for wildcards in this variable's value,
       however it is restricted to specific licenses. Currently only
       these wildcards are allowed and expand as follows:
